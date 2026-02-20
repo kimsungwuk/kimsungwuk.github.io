@@ -17,7 +17,7 @@ def create_post(title, content, category="AI를 활용한 개발정보", summary
     # 이미지 태그 생성
     image_tag = f'<img src="{image_url}" alt="{title}" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">' if image_url else ""
     
-    # 2. HTML 템플릿 작성 (Apple 디자인 스타일 적용)
+    # 2. HTML 템플릿 작성 (Apple 디자인 스타일 적용 + Giscus 고정)
     html_template = f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -47,15 +47,15 @@ def create_post(title, content, category="AI를 활용한 개발정보", summary
     <div class="comment-section">
         <script src="https://giscus.app/client.js"
                 data-repo="kimsungwuk/chloekim"
-                data-repo-id="R_kgDON-fHUA"
-                data-category="Announcements"
-                data-category-id="DIC_kwDON-fHUM4CnS_4"
+                data-repo-id="R_kgDORUWviQ"
+                data-category="General"
+                data-category-id="DIC_kwDORUWvic4C206U"
                 data-mapping="pathname"
                 data-strict="0"
                 data-reactions-enabled="1"
                 data-emit-metadata="0"
                 data-input-position="bottom"
-                data-theme="light"
+                data-theme="preferred_color_scheme"
                 data-lang="ko"
                 crossorigin="anonymous"
                 async>
@@ -85,10 +85,10 @@ def create_post(title, content, category="AI를 활용한 개발정보", summary
         }},"""
     
     # posts 배열의 시작 부분에 삽입
-    updated_index = content_index.replace("const posts = [", f"const posts = [\n        {new_post_json}")
-    
-    with open(index_path, "w", encoding="utf-8") as f:
-        f.write(updated_index)
+    if new_post_json not in content_index:
+        updated_index = content_index.replace("const posts = [", f"const posts = [\n        {new_post_json}")
+        with open(index_path, "w", encoding="utf-8") as f:
+            f.write(updated_index)
 
     print(f"💰 [성공] 새 포스팅 생성 및 인덱스 업데이트 완료: {filename}")
     return filename
