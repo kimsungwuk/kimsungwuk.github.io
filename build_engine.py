@@ -13,6 +13,7 @@ def build_post(title, content, category, summary, image_url, date=None):
     if not date:
         date = datetime.date.today().isoformat()
     
+    # Safe filename for filesystem
     post_hash = hashlib.md5(title.encode()).hexdigest()[:8]
     filename = f"post-{date}-{post_hash}.html"
     
@@ -26,7 +27,7 @@ def build_post(title, content, category, summary, image_url, date=None):
     with open(os.path.join(BASE_DIR, "templates/post_layout.html"), "r", encoding="utf-8") as f:
         template = f.read()
     
-    # 변수 치환 (Utterances 시스템 적용)
+    # 변수 치환
     rendered = template.replace("{{title}}", title)\
                        .replace("{{blog_title}}", CONFIG["blog_title"])\
                        .replace("{{category}}", category)\
@@ -34,7 +35,18 @@ def build_post(title, content, category, summary, image_url, date=None):
                        .replace("{{content}}", content.replace('\n', '<br>'))\
                        .replace("{{image_tag}}", image_tag)\
                        .replace("{{visitor_badge}}", visitor_badge)\
-                       .replace("{{github_repo}}", CONFIG["github_repo"])
+                       .replace("{{github_repo}}", CONFIG["github_repo"])\
+                       .replace("{{post_id}}", post_hash)\
+                       .replace("{{v_style}}", CONFIG["visitor_counter"]["style"])\
+                       .replace("{{v_color}}", CONFIG["visitor_counter"]["color"])\
+                       .replace("{{g_repo}}", CONFIG["giscus"]["repo"])\
+                       .replace("{{g_repo_id}}", CONFIG["giscus"]["repo_id"])\
+                       .replace("{{g_category}}", CONFIG["giscus"]["category"])\
+                       .replace("{{g_category_id}}", CONFIG["giscus"]["category_id"])\
+                       .replace("{{g_mapping}}", CONFIG["giscus"]["mapping"])\
+                       .replace("{{g_reactions}}", CONFIG["giscus"]["reactions_enabled"])\
+                       .replace("{{g_theme}}", CONFIG["giscus"]["theme"])\
+                       .replace("{{g_lang}}", CONFIG["giscus"]["lang"])
 
     # 파일 저장
     output_path = os.path.join(BASE_DIR, f"posts/{filename}")
@@ -75,7 +87,7 @@ def rebuild_all():
         )
         processed_posts.append(p_info)
     
-    # index.html 업데이트
+    # Update index.html
     index_path = os.path.join(BASE_DIR, "index.html")
     with open(index_path, "r", encoding="utf-8") as f:
         html = f.read()
@@ -91,7 +103,7 @@ def rebuild_all():
         with open(index_path, "w", encoding="utf-8") as f:
             f.write(new_html)
 
-    print("🚀 [Engine] Site rebuilt with Utterances and safe filenames.")
+    print("🚀 [Engine] Site rebuilt with Giscus (Reactions Enabled).")
 
 if __name__ == "__main__":
     rebuild_all()

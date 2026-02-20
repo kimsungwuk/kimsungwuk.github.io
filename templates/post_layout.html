@@ -32,11 +32,19 @@
     </div>
 
     <div class="comment-section">
-        <!-- Optimized Utterances (No Crossorigin to avoid CORS issues) -->
-        <script src="https://utteranc.es/client.js"
-                repo="kimsungwuk/chloekim"
-                issue-term="pathname"
-                theme="github-light"
+        <!-- Giscus System (Restored for Reactions) -->
+        <script src="https://giscus.app/client.js"
+                data-repo="{{g_repo}}"
+                data-repo-id="{{g_repo_id}}"
+                data-category="{{g_category}}"
+                data-category-id="{{g_category_id}}"
+                data-mapping="{{g_mapping}}"
+                data-reactions-enabled="{{g_reactions}}"
+                data-emit-metadata="0"
+                data-input-position="bottom"
+                data-theme="{{g_theme}}"
+                data-lang="{{g_lang}}"
+                crossorigin="anonymous"
                 async>
         </script>
     </div>
