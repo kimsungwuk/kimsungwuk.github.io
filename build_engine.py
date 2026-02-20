@@ -20,7 +20,7 @@ def auto_link_and_format(text):
             return f"""
             <div class="app-card">
                 <div class="app-card-info">
-                    <img src="https://www.gstatic.com/android/market_images/web/play_prism_h_64.png" alt="Google Play" style="width:32px; margin-bottom:10px; box-shadow:none;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play" style="width:64px; height:64px; margin: 0 auto 15px auto; box-shadow:none; border-radius:0;">
                     <strong>Google Play Store</strong>
                     <p>지금 바로 다운로드하여 플레이해보세요.</p>
                 </div>
