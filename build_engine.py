@@ -9,6 +9,32 @@ BASE_DIR = "/Users/kimsungwuk/StudioProjects/chloe-blog"
 with open(os.path.join(BASE_DIR, "config/settings.json"), "r", encoding="utf-8") as f:
     CONFIG = json.load(f)
 
+def auto_link_and_format(text):
+    # 1. URL 자동 링크 (http/https)
+    url_pattern = r'(https?://[^\s]+)'
+    
+    # 2. 구글 플레이 스토어 링크인 경우 버튼/카드 형태로 변환하는 특수 처리
+    def replace_with_ui(match):
+        url = match.group(1)
+        if "play.google.com" in url:
+            return f"""
+            <div class="app-card">
+                <div class="app-card-info">
+                    <img src="https://www.gstatic.com/android/market_images/web/play_prism_h_64.png" alt="Google Play" style="width:32px; margin-bottom:10px; box-shadow:none;">
+                    <strong>Google Play Store</strong>
+                    <p>지금 바로 다운로드하여 플레이해보세요.</p>
+                </div>
+                <a href="{url}" target="_blank" class="app-download-btn">앱 설치하기</a>
+            </div>
+            """
+        return f'<a href="{url}" target="_blank">{url}</a>'
+
+    # 텍스트 내 URL 처리
+    text = re.sub(url_pattern, replace_with_ui, text)
+    
+    # 3. 줄바꿈 처리
+    return text.replace('\n', '<br>')
+
 def build_post(title, content, category, summary, image_url, date=None):
     if not date:
         date = datetime.date.today().isoformat()
@@ -36,7 +62,7 @@ def build_post(title, content, category, summary, image_url, date=None):
                        .replace("{{og_image}}", image_url or "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1000")\
                        .replace("{{category}}", category)\
                        .replace("{{date}}", date)\
-                       .replace("{{content}}", content.replace('\n', '<br>'))\
+                       .replace("{{content}}", auto_link_and_format(content))\
                        .replace("{{image_tag}}", image_tag)\
                        .replace("{{visitor_badge}}", visitor_badge)\
                        .replace("{{github_repo}}", CONFIG["github_repo"])
@@ -87,7 +113,7 @@ def rebuild_all():
     generate_robots_txt()
     generate_sitemap(processed_posts)
 
-    print("🚀 [Engine] SEO optimization and rebuild complete.")
+    print("🚀 [Engine] Rebuilt with Auto-Link and App Card support.")
 
 def update_index(processed_posts):
     index_path = os.path.join(BASE_DIR, "index.html")
@@ -96,6 +122,7 @@ def update_index(processed_posts):
     
     start_marker = "const posts = ["
     end_marker = "];"
+    
     start_idx = html.find(start_marker)
     end_idx = html.find(end_marker, start_idx)
     
@@ -106,33 +133,18 @@ def update_index(processed_posts):
             f.write(new_html)
 
 def generate_robots_txt():
-    content = f"""User-agent: *
-Allow: /
-Sitemap: {CONFIG['base_url']}/sitemap.xml
-"""
+    content = f"User-agent: *\nAllow: /\nSitemap: {CONFIG['base_url']}/sitemap.xml\n"
     with open(os.path.join(BASE_DIR, "robots.txt"), "w") as f:
         f.write(content)
 
 def generate_sitemap(posts):
     base_url = CONFIG['base_url']
     today = datetime.date.today().isoformat()
-    
     xml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>{base_url}/</loc>
-    <lastmod>{today}</lastmod>
-    <priority>1.0</priority>
-  </url>"""
-    
+  <url><loc>{base_url}/</loc><lastmod>{today}</lastmod><priority>1.0</priority></url>"""
     for post in posts:
-        xml += f"""
-  <url>
-    <loc>{base_url}/{post['url']}</loc>
-    <lastmod>{post['date']}</lastmod>
-    <priority>0.8</priority>
-  </url>"""
-        
+        xml += f"\n  <url><loc>{base_url}/{post['url']}</loc><lastmod>{post['date']}</lastmod><priority>0.8</priority></url>"
     xml += "\n</urlset>"
     with open(os.path.join(BASE_DIR, "sitemap.xml"), "w") as f:
         f.write(xml)
