@@ -47,8 +47,11 @@ def auto_link_and_format(text):
             <a href="{url}" target="_blank">
                 <div class="card-image" style="background-image: url('{meta['image']}');"></div>
                 <div class="card-body">
-                    <div class="card-title">{meta['title']}</div>
-                    <div class="card-url">play.google.com</div>
+                    <div class="card-info">
+                        <div class="card-title">{meta['title']}</div>
+                        <div class="card-subtitle">Google Play Store</div>
+                    </div>
+                    <div class="btn-get">받기</div>
                 </div>
             </a>
         </div>
