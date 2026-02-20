@@ -17,6 +17,10 @@ def create_post(title, content, category="AI를 활용한 개발정보", summary
     # 이미지 태그 생성
     image_tag = f'<img src="{image_url}" alt="{title}" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">' if image_url else ""
     
+    # 방문자 카운터 배지 생성
+    hits_url = f"https://kimsungwuk.github.io/chloekim/posts/{filename}"
+    visitor_badge = f'<img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url={hits_url}&count_bg=%230066CC&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Views&edge_flat=false" style="margin-bottom:20px;">'
+
     # 2. HTML 템플릿 작성 (Apple 디자인 스타일 적용 + Giscus 고정)
     html_template = f"""<!DOCTYPE html>
 <html lang="ko">
@@ -29,7 +33,7 @@ def create_post(title, content, category="AI를 활용한 개발정보", summary
         body {{ font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 0; line-height: 1.6; }}
         .container {{ max-width: 680px; margin: 0 auto; padding: 80px 20px; }}
         .meta {{ font-size: 14px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px; }}
-        h1 {{ font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 40px 0; line-height: 1.1; }}
+        h1 {{ font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 10px 0; line-height: 1.1; }}
         .content {{ font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }}
         .back-link {{ display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }}
         .comment-section {{ margin-top: 80px; padding-top: 40px; border-top: 1px solid #e5e5e5; }}
@@ -39,6 +43,7 @@ def create_post(title, content, category="AI를 활용한 개발정보", summary
 <div class="container">
     <div class="meta">{category} · {today}</div>
     <h1>{title}</h1>
+    {visitor_badge}
     {image_tag}
     <div class="content">
         {content.replace('\n', '<br>')}
