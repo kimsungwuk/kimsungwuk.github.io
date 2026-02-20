@@ -2,7 +2,7 @@ import os
 import datetime
 import re
 
-def create_post(title, content, category="AI를 활용한 개발정보", summary=""):
+def create_post(title, content, category="AI를 활용한 개발정보", summary="", image_url=""):
     base_dir = "/Users/kimsungwuk/StudioProjects/chloe-blog"
     posts_dir = os.path.join(base_dir, "posts")
     
@@ -13,6 +13,9 @@ def create_post(title, content, category="AI를 활용한 개발정보", summary
     safe_title = re.sub(r'[^\w\s-]', '', title.replace('/', '-')).strip()
     filename = f"{today}-{safe_title.replace(' ', '-').lower()}.html"
     filepath = os.path.join(posts_dir, filename)
+    
+    # 이미지 태그 생성
+    image_tag = f'<img src="{image_url}" alt="{title}" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">' if image_url else ""
     
     # 2. HTML 템플릿 작성 (Apple 디자인 스타일 적용)
     html_template = f"""<!DOCTYPE html>
@@ -35,6 +38,7 @@ def create_post(title, content, category="AI를 활용한 개발정보", summary
 <div class="container">
     <div class="meta">{category} · {today}</div>
     <h1>{title}</h1>
+    {image_tag}
     <div class="content">
         {content.replace('\n', '<br>')}
     </div>
@@ -56,6 +60,7 @@ def create_post(title, content, category="AI를 활용한 개발정보", summary
             date: "{today}",
             category: "{category}",
             summary: "{summary or (content[:100] + '...')}",
+            image: "{image_url}",
             url: "posts/{filename}"
         }},"""
     

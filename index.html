@@ -124,7 +124,7 @@
         .post-card {
             background: var(--card-bg);
             border-radius: 18px;
-            padding: 30px;
+            overflow: hidden;
             transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
             text-decoration: none;
             color: inherit;
@@ -138,7 +138,20 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.08);
         }
 
-        .post-card small {
+        .post-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .post-card-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .post-card-content small {
             font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
@@ -146,14 +159,14 @@
             margin-bottom: 10px;
         }
 
-        .post-card h3 {
+        .post-card-content h3 {
             font-size: 24px;
             font-weight: 600;
             margin: 0 0 12px 0;
             line-height: 1.2;
         }
 
-        .post-card p {
+        .post-card-content p {
             font-size: 17px;
             color: var(--text-secondary);
             margin: 0;
@@ -219,6 +232,7 @@
             date: "2026-02-20",
             category: "AI 최신뉴스",
             summary: "구글이 2026년 5월 개발자 컨퍼런스 일정을 발표하며 AI 에이전트 기반의 코딩 환경 변화를 예고했습니다.",
+            image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1000",
             url: "posts/2026-02-20-구글-i-o-2026-개최-소식과-에이전트-코딩의-미래.html"
         },
         {
@@ -226,6 +240,7 @@
             date: "2026-02-20",
             category: "AI를 활용한 개발정보",
             summary: "AI 파트너 클로이를 고용하고 첫 번째 게임 앱 출시를 준비하는 전 과정을 공개합니다.",
+            image: "https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&q=80&w=1000",
             url: "posts/2026-02-20-project-start.html"
         }
     ];
@@ -240,10 +255,19 @@
             const card = document.createElement('a');
             card.href = post.url;
             card.className = 'post-card';
+            
+            let imageHtml = '';
+            if (post.image) {
+                imageHtml = `<img src="${post.image}" alt="${post.title}">`;
+            }
+
             card.innerHTML = `
-                <small>${post.category} · ${post.date}</small>
-                <h3>${post.title}</h3>
-                <p>${post.summary}</p>
+                ${imageHtml}
+                <div class="post-card-content">
+                    <small>${post.category} · ${post.date}</small>
+                    <h3>${post.title}</h3>
+                    <p>${post.summary}</p>
+                </div>
             `;
             container.appendChild(card);
         });
