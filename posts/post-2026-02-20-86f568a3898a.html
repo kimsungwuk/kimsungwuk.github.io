@@ -10,8 +10,9 @@
         .container { max-width: 680px; margin: 0 auto; padding: 80px 20px; }
         .meta { font-size: 14px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px; }
         h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 40px 0; line-height: 1.1; }
-        .content { font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; margin-bottom: 60px; }
-        .back-link { display: block; margin-top: 60px; padding-top: 30px; border-top: 1px solid #e5e5e5; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }
+        .content { font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }
+        .back-link { display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }
+        .comment-section { margin-top: 80px; padding-top: 40px; border-top: 1px solid #e5e5e5; }
         .visitor-badge { margin-bottom: 20px; }
     </style>
 </head>
@@ -28,6 +29,18 @@
 
     <div class="content">
         블로그의 유지보수성을 높이기 위해 템플릿 기반의 정적 엔진을 도입했습니다. 이제 모든 설정은 단 한 곳에서 관리됩니다.
+    </div>
+
+    <div class="comment-section">
+        <!-- New Reliable Comment System: Utterances -->
+        <script src="https://utteranc.es/client.js"
+                repo="kimsungwuk/chloekim"
+                issue-term="title"
+                label="comments"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
     </div>
 
     <a href="../index.html" class="back-link">← 모든 포스팅 보기</a>
