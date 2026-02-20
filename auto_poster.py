@@ -1,13 +1,17 @@
 import os
 import datetime
+import re
 
 def create_post(title, content, category="AI를 활용한 개발정보", summary=""):
     base_dir = "/Users/kimsungwuk/StudioProjects/chloe-blog"
     posts_dir = os.path.join(base_dir, "posts")
     
-    # 1. 파일 이름 생성
+    # 0. 날짜 정의
     today = datetime.date.today().isoformat()
-    filename = f"{today}-{title.replace(' ', '-').lower()}.html"
+    
+    # 1. 파일 이름 생성 (특수문자 제거 및 슬래시 처리)
+    safe_title = re.sub(r'[^\w\s-]', '', title.replace('/', '-')).strip()
+    filename = f"{today}-{safe_title.replace(' ', '-').lower()}.html"
     filepath = os.path.join(posts_dir, filename)
     
     # 2. HTML 템플릿 작성 (Apple 디자인 스타일 적용)
@@ -65,5 +69,4 @@ def create_post(title, content, category="AI를 활용한 개발정보", summary
     return filename
 
 if __name__ == "__main__":
-    # 나중에 내가 이 함수를 호출해서 글을 쓸 거야!
     pass
