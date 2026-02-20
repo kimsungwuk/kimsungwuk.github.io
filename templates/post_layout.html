@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}} - {{blog_title}}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{{summary}}">
+    <meta name="keywords" content="{{category}}, AI 뉴스, 앱 개발, 수익 자동화, kimsungwuk">
+    <meta name="author" content="{{author}}">
+    <link rel="canonical" href="{{base_url}}/posts/{{filename}}">
+    
+    <!-- Open Graph (SNS Sharing) -->
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:description" content="{{summary}}">
+    <meta property="og:image" content="{{og_image}}">
+    <meta property="og:url" content="{{base_url}}/posts/{{filename}}">
+    <meta property="og:type" content="article">
+    
     <style>
         :root { --bg-color: #ffffff; --text-primary: #1d1d1f; --text-secondary: #86868b; --accent-color: #0066cc; }
         body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 0; line-height: 1.6; }
@@ -32,9 +46,9 @@
     </div>
 
     <div class="comment-section">
-        <!-- New Reliable Comment System: Utterances -->
+        <!-- Utterances for reliable comments -->
         <script src="https://utteranc.es/client.js"
-                repo="kimsungwuk/chloekim"
+                repo="{{github_repo}}"
                 issue-term="title"
                 label="comments"
                 theme="github-light"

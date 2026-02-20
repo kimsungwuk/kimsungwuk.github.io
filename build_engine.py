@@ -13,7 +13,7 @@ def build_post(title, content, category, summary, image_url, date=None):
     if not date:
         date = datetime.date.today().isoformat()
     
-    post_hash = hashlib.md5(title.encode()).hexdigest()[:12]
+    post_hash = hashlib.md5(title.encode()).hexdigest()[:8]
     filename = f"post-{date}-{post_hash}.html"
     
     # 이미지 태그
@@ -29,20 +29,17 @@ def build_post(title, content, category, summary, image_url, date=None):
     # 변수 치환
     rendered = template.replace("{{title}}", title)\
                        .replace("{{blog_title}}", CONFIG["blog_title"])\
+                       .replace("{{author}}", CONFIG["author"])\
+                       .replace("{{base_url}}", CONFIG["base_url"])\
+                       .replace("{{filename}}", filename)\
+                       .replace("{{summary}}", summary or (content[:150] + "..."))\
+                       .replace("{{og_image}}", image_url or "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1000")\
                        .replace("{{category}}", category)\
                        .replace("{{date}}", date)\
                        .replace("{{content}}", content.replace('\n', '<br>'))\
                        .replace("{{image_tag}}", image_tag)\
                        .replace("{{visitor_badge}}", visitor_badge)\
-                       .replace("{{github_repo}}", CONFIG["github_repo"])\
-                       .replace("{{post_id}}", post_hash)\
-                       .replace("{{g_repo_id}}", CONFIG["giscus"]["repo_id"])\
-                       .replace("{{g_category}}", CONFIG["giscus"]["category"])\
-                       .replace("{{g_category_id}}", CONFIG["giscus"]["category_id"])\
-                       .replace("{{g_mapping}}", CONFIG["giscus"]["mapping"])\
-                       .replace("{{g_reactions}}", CONFIG["giscus"]["reactions_enabled"])\
-                       .replace("{{g_theme}}", CONFIG["giscus"]["theme"])\
-                       .replace("{{g_lang}}", CONFIG["giscus"]["lang"])
+                       .replace("{{github_repo}}", CONFIG["github_repo"])
 
     # 파일 저장
     output_path = os.path.join(BASE_DIR, f"posts/{filename}")
@@ -84,6 +81,15 @@ def rebuild_all():
         processed_posts.append(p_info)
     
     # Update index.html
+    update_index(processed_posts)
+    
+    # Generate SEO files
+    generate_robots_txt()
+    generate_sitemap(processed_posts)
+
+    print("🚀 [Engine] SEO optimization and rebuild complete.")
+
+def update_index(processed_posts):
     index_path = os.path.join(BASE_DIR, "index.html")
     with open(index_path, "r", encoding="utf-8") as f:
         html = f.read()
@@ -99,7 +105,37 @@ def rebuild_all():
         with open(index_path, "w", encoding="utf-8") as f:
             f.write(new_html)
 
-    print("🚀 [Engine] Site rebuilt with General category and dynamic settings.")
+def generate_robots_txt():
+    content = f"""User-agent: *
+Allow: /
+Sitemap: {CONFIG['base_url']}/sitemap.xml
+"""
+    with open(os.path.join(BASE_DIR, "robots.txt"), "w") as f:
+        f.write(content)
+
+def generate_sitemap(posts):
+    base_url = CONFIG['base_url']
+    today = datetime.date.today().isoformat()
+    
+    xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{base_url}/</loc>
+    <lastmod>{today}</lastmod>
+    <priority>1.0</priority>
+  </url>"""
+    
+    for post in posts:
+        xml += f"""
+  <url>
+    <loc>{base_url}/{post['url']}</loc>
+    <lastmod>{post['date']}</lastmod>
+    <priority>0.8</priority>
+  </url>"""
+        
+    xml += "\n</urlset>"
+    with open(os.path.join(BASE_DIR, "sitemap.xml"), "w") as f:
+        f.write(xml)
 
 if __name__ == "__main__":
     rebuild_all()
