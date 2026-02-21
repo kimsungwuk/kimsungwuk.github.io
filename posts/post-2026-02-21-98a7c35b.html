@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenClaw 마스터 가이드: 무인 수익 자동화의 심장 (연재 목차) - Chloe Dev Log</title>
+    <title>제5강. 보안과 권한: Node Permission 시스템의 정체 - Chloe Dev Log</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="OpenClaw 기술 연재의 전체 로드맵과 각 강의별 핵심 내용을 정리한 목차 페이지입니다.">
+    <meta name="description" content="에이전트가 시스템 자원에 접근할 때 발생할 수 있는 보안 위협을 방지하고 권한을 정밀하게 제어하는 보안 아키텍처를 분석합니다.">
     <meta name="keywords" content="OpenClaw, AI 뉴스, 앱 개발, 수익 자동화, kimsungwuk">
     <meta name="author" content="kimsungwuk">
-    <link rel="canonical" href="https://kimsungwuk.github.io/chloekim/posts/post-2026-02-21-c85a0b4b.html">
+    <link rel="canonical" href="https://kimsungwuk.github.io/chloekim/posts/post-2026-02-21-98a7c35b.html">
     
     <!-- Open Graph (SNS Sharing) -->
-    <meta property="og:title" content="OpenClaw 마스터 가이드: 무인 수익 자동화의 심장 (연재 목차)">
-    <meta property="og:description" content="OpenClaw 기술 연재의 전체 로드맵과 각 강의별 핵심 내용을 정리한 목차 페이지입니다.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&q=80&w=1000">
-    <meta property="og:url" content="https://kimsungwuk.github.io/chloekim/posts/post-2026-02-21-c85a0b4b.html">
+    <meta property="og:title" content="제5강. 보안과 권한: Node Permission 시스템의 정체">
+    <meta property="og:description" content="에이전트가 시스템 자원에 접근할 때 발생할 수 있는 보안 위협을 방지하고 권한을 정밀하게 제어하는 보안 아키텍처를 분석합니다.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000">
+    <meta property="og:url" content="https://kimsungwuk.github.io/chloekim/posts/post-2026-02-21-98a7c35b.html">
     <meta property="og:type" content="article">
     
     <style>
@@ -130,16 +130,16 @@
 <body>
 <div class="container">
     <div class="meta">OpenClaw · 2026-02-21</div>
-    <h1>OpenClaw 마스터 가이드: 무인 수익 자동화의 심장 (연재 목차)</h1>
+    <h1>제5강. 보안과 권한: Node Permission 시스템의 정체</h1>
     
     <div class="visitor-badge">
-        <img src="https://hits.dwyl.com/kimsungwuk/chloekim/c85a0b4b.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;">
+        <img src="https://hits.dwyl.com/kimsungwuk/chloekim/98a7c35b.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;">
     </div>
 
-    <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&q=80&w=1000" alt="OpenClaw 마스터 가이드: 무인 수익 자동화의 심장 (연재 목차)" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" alt="제5강. 보안과 권한: Node Permission 시스템의 정체" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
 
     <div class="content">
-        인공지능 기술이 빠르게 발전하면서 단순한 대화를 넘어 실제 시스템을 제어하고 가치를 창출하는 에이전트 기술이 주목받고 있습니다. 본 연재에서는 오픈소스 에이전트 플랫폼인 OpenClaw의 핵심 아키텍처부터 실전 활용까지 개발자의 관점에서 깊이 있게 다룹니다.<br><br>아래는 본 연재의 전체 목차이며, 각 강의는 순차적으로 업데이트될 예정입니다.<br><br><a href="post-2026-02-21-c85a0b4b.html"><a href="../posts/post-2026-02-21-63b1d429.html">제1강. OpenClaw 개요: 왜 단순한 챗봇이 아닌가?</a></a><br><a href="../posts/post-2026-02-21-93f5971f.html">제2강. 개발 환경 구축: 5분 만에 기지 세우기</a> (준비 중)<br><a href="../posts/post-2026-02-21-ecd0203e.html">제3강. 에이전트의 팔과 다리: Skills와 Tools 완벽 이해</a> (준비 중)<br><a href="../posts/post-2026-02-21-aaef123c.html">제4강. 멀티 채널 연동: 텔레그램을 비즈니스 관제실로</a> (준비 중)<br><a href="../posts/post-2026-02-21-98a7c35b.html">제5강. 보안과 권한: Node Permission 시스템의 정체</a> (준비 중)<br><a href="../posts/post-2026-02-21-a9965545.html">제6강. 완전 자동화의 마법: Cron과 Heartbeat</a> (준비 중)<br><a href="../posts/post-2026-02-21-e9a9619b.html">제7강. 실전 프로젝트: OpenClaw로 무인 블로그 운영하기</a> (준비 중)<br><br>이 가이드를 통해 여러분의 맥 미니를 강력한 무인 수익 창출 기지로 변모시키는 여정을 시작해 보시기 바랍니다.
+        에이전트가 로컬 시스템의 파일을 수정하고 카메라를 켜는 능력은 매우 강력하지만, 동시에 보안상의 위협이 될 수도 있습니다. OpenClaw는 이를 방지하기 위해 정교한 Node Permission(노드 권한) 시스템을 탑재하고 있습니다.<br><br>1. 보안 모델의 핵심: 명시적 거부 (Deny by Default)<br>OpenClaw의 기본 철학은 위험한 명령에 대해 기본적으로 거부하는 것입니다. 특히 카메라 촬영, 화면 녹화, 시스템 파일 수정 등 민감한 작업은 사용자의 명시적인 승인 없이는 실행되지 않습니다.<br><br>2. 보안 감사 실행<br>현재 시스템의 보안 상태를 점검하고 잠재적인 취약점을 파악할 수 있습니다.<br>명령어: openclaw security audit<br><br>더 깊이 있는 점검이 필요하다면 다음 명령어를 사용하십시오.<br>명령어: openclaw security audit --deep<br><br>3. 명령어 차단 설정 (denyCommands)<br>특정 에이전트가 절대로 실행해서는 안 되는 명령어 리스트를 설정 파일에서 관리할 수 있습니다.<br>설정 예시: gateway.nodes.denyCommands 섹션에 금지할 도구 이름을 추가합니다.<br><br>4. macOS TCC 권한 관리<br>OpenClaw가 실행되는 맥 OS의 보안 체계(Transparency, Consent, and Control)와 긴밀히 연동됩니다. 에이전트가 화면 스크린샷을 찍거나 알림을 보내려면 시스템 설정 내의 보안 및 개인정보 보호 탭에서 권한이 허용되어야 합니다.<br><br>5. 안전한 외부 접근<br>텔레그램 등 외부 채널을 통한 접근 시에도 화이트리스트(Allowlist)를 통해 허가된 사용자 ID만 에이전트와 대화할 수 있도록 제한할 수 있습니다.<br><br>안전한 보안 기반이 마련되었다면, 이제 에이전트가 스스로 일하게 만드는 자동화 기술로 넘어갈 준비가 되었습니다. 다음 강의에서는 Cron과 Heartbeat를 활용한 스케줄링 기법을 다룹니다.<br><br><a href="../posts/post-2026-02-21-c85a0b4b.html">목차로 돌아가기</a>
     </div>
 
     <div class="comment-section">
