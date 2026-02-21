@@ -33,11 +33,9 @@ def get_link_metadata(url):
         return {"title": "Google Play Store", "image": ""}
 
 def format_content(text):
-    # 1. 명령어 박스 변환 (명령어: [내용] 또는 명령어 예시: [내용])
-    # 고유 ID 생성을 위해 리스트 인덱스 사용 시뮬레이션
+    # 1. 명령어 박스 변환
     cmd_pattern = r'(?:명령어|명령어 예시|상태 확인 명령어):\s*(.+)'
     
-    code_blocks = []
     def replace_with_code_box(match):
         code = match.group(1).strip().replace('\"', '')
         block_id = f"code-{hashlib.md5(code.encode()).hexdigest()[:6]}"
@@ -71,10 +69,8 @@ def format_content(text):
         </div>
         """
 
-    # 순차적 변환
     text = re.sub(cmd_pattern, replace_with_code_box, text)
     text = re.sub(url_pattern, replace_with_rich_preview, text)
-    
     return text.replace('\n', '<br>')
 
 def build_post(title, content, category, summary, image_url, date=None):
@@ -84,7 +80,12 @@ def build_post(title, content, category, summary, image_url, date=None):
     post_hash = hashlib.md5(title.encode()).hexdigest()[:8]
     filename = f"post-{date}-{post_hash}.html"
     
-    image_tag = f'<img src="{image_url}" alt="{title}" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">' if image_url else ""
+    # [FIX] 엔진 레벨에서 이미지 누락 방지 및 기본 이미지 설정
+    if not image_url:
+        image_url = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1000"
+        
+    image_tag = f'<img src="{image_url}" alt="{title}" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">'
+    
     visitor_badge = f'<img src="https://hits.dwyl.com/kimsungwuk/chloekim/{post_hash}.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;">'
 
     with open(os.path.join(BASE_DIR, "templates/post_layout.html"), "r", encoding="utf-8") as f:
@@ -96,7 +97,7 @@ def build_post(title, content, category, summary, image_url, date=None):
                        .replace("{{base_url}}", CONFIG["base_url"])\
                        .replace("{{filename}}", filename)\
                        .replace("{{summary}}", summary or (content[:150] + "..."))\
-                       .replace("{{og_image}}", image_url or "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1000")\
+                       .replace("{{og_image}}", image_url)\
                        .replace("{{category}}", category)\
                        .replace("{{date}}", date)\
                        .replace("{{content}}", format_content(content))\
@@ -129,7 +130,7 @@ def rebuild_all():
 
     processed_posts = []
     for post in posts_data:
-        p_info = build_post(post["title"], post["content"], post["category"], post["summary"], post["image_url"], post.get("date"))
+        p_info = build_post(post["title"], post["content"], post["category"], post["summary"], post.get("image_url", ""), post.get("date"))
         processed_posts.append(p_info)
     
     index_path = os.path.join(BASE_DIR, "index.html")
@@ -151,7 +152,7 @@ def rebuild_all():
     generate_robots_txt()
     generate_sitemap(processed_posts)
 
-    print("🚀 [Engine] Rebuilt with Premium Code Blocks and Rich Previews.")
+    print("🚀 [Engine] QA Fix Build complete.")
 
 def generate_robots_txt():
     content = f"User-agent: *\nAllow: /\nSitemap: {CONFIG['base_url']}/sitemap.xml\n"
