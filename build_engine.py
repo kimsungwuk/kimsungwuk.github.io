@@ -18,7 +18,6 @@ def get_link_metadata(url):
         response = requests.get(url, headers=headers, timeout=10)
         soup = BeautifulSoup(response.text, 'html.parser')
         
-        # Open Graph 메타데이터 추출
         title_meta = soup.find("meta", property="og:title")
         image_meta = soup.find("meta", property="og:image")
         
@@ -33,13 +32,30 @@ def get_link_metadata(url):
         print(f"⚠️ 메타데이터 수집 실패: {e}")
         return {"title": "Google Play Store", "image": ""}
 
-def auto_link_and_format(text):
+def format_content(text):
+    # 1. 명령어 박스 변환 (명령어: [내용] 또는 명령어 예시: [내용])
+    # 고유 ID 생성을 위해 리스트 인덱스 사용 시뮬레이션
+    cmd_pattern = r'(?:명령어|명령어 예시|상태 확인 명령어):\s*(.+)'
+    
+    code_blocks = []
+    def replace_with_code_box(match):
+        code = match.group(1).strip().replace('\"', '')
+        block_id = f"code-{hashlib.md5(code.encode()).hexdigest()[:6]}"
+        return f"""
+        <div class="code-container">
+            <span class="code-text" id="{block_id}">{code}</span>
+            <button class="copy-btn" onclick="copyToClipboard('{block_id}')" title="복사하기">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+        </div>
+        """
+
+    # 2. 구글 플레이 스토어 링크 변환
     url_pattern = r'(https?://play\.google\.com/store/apps/details\?id=[^\s\n<]+)'
     
     def replace_with_rich_preview(match):
         url = match.group(1)
         meta = get_link_metadata(url)
-        
         return f"""
         <div class="rich-link-card">
             <a href="{url}" target="_blank">
@@ -55,7 +71,10 @@ def auto_link_and_format(text):
         </div>
         """
 
+    # 순차적 변환
+    text = re.sub(cmd_pattern, replace_with_code_box, text)
     text = re.sub(url_pattern, replace_with_rich_preview, text)
+    
     return text.replace('\n', '<br>')
 
 def build_post(title, content, category, summary, image_url, date=None):
@@ -80,7 +99,7 @@ def build_post(title, content, category, summary, image_url, date=None):
                        .replace("{{og_image}}", image_url or "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1000")\
                        .replace("{{category}}", category)\
                        .replace("{{date}}", date)\
-                       .replace("{{content}}", auto_link_and_format(content))\
+                       .replace("{{content}}", format_content(content))\
                        .replace("{{image_tag}}", image_tag)\
                        .replace("{{visitor_badge}}", visitor_badge)\
                        .replace("{{github_repo}}", CONFIG["github_repo"])
@@ -90,12 +109,9 @@ def build_post(title, content, category, summary, image_url, date=None):
         f.write(rendered)
     
     return {
-        "title": title,
-        "date": date,
-        "category": category,
+        "title": title, "date": date, "category": category,
         "summary": summary or (content[:100] + "..."),
-        "image": image_url,
-        "url": f"posts/{filename}"
+        "image": image_url, "url": f"posts/{filename}"
     }
 
 def rebuild_all():
@@ -116,16 +132,6 @@ def rebuild_all():
         p_info = build_post(post["title"], post["content"], post["category"], post["summary"], post["image_url"], post.get("date"))
         processed_posts.append(p_info)
     
-    # Update index.html
-    update_index(processed_posts)
-    
-    # [FIX] Generate SEO files
-    generate_robots_txt()
-    generate_sitemap(processed_posts)
-
-    print("🚀 [Engine] Rebuilt with SEO tags and Sitemap.")
-
-def update_index(processed_posts):
     index_path = os.path.join(BASE_DIR, "index.html")
     with open(index_path, "r", encoding="utf-8") as f:
         html = f.read()
@@ -140,6 +146,12 @@ def update_index(processed_posts):
         new_html = html[:start_idx] + posts_js + html[end_idx + 1:]
         with open(index_path, "w", encoding="utf-8") as f:
             f.write(new_html)
+
+    # Generate SEO files
+    generate_robots_txt()
+    generate_sitemap(processed_posts)
+
+    print("🚀 [Engine] Rebuilt with Premium Code Blocks and Rich Previews.")
 
 def generate_robots_txt():
     content = f"User-agent: *\nAllow: /\nSitemap: {CONFIG['base_url']}/sitemap.xml\n"
