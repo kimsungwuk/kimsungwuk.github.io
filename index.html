@@ -251,6 +251,7 @@
         <a href="#" class="category-pill" onclick="filterCategory('AI를 활용한 개발정보')">AI를 활용한 개발정보 <span id="count-dev" class="post-count"></span></a>
         <a href="#" class="category-pill" onclick="filterCategory('여행')">여행 <span id="count-travel" class="post-count"></span></a>
         <a href="#" class="category-pill" onclick="filterCategory('OpenClaw')">OpenClaw <span id="count-openclaw" class="post-count"></span></a>
+        <a href="#" class="category-pill" onclick="filterCategory('수익화 팁')">수익화 팁 <span id="count-money" class="post-count"></span></a>
     </div>
 
     <div id="posts-container" class="post-grid">
@@ -270,6 +271,30 @@
 
 <script>
     const posts = [
+        {
+                "title": "애드센스 승인 확률을 높이는 고퀄리티 포스팅의 3가지 핵심 요소",
+                "date": "2026-02-24",
+                "category": "수익화 팁",
+                "summary": "구글 애드센스 승인을 한 번에 받기 위해 반드시 지켜야 할 전문성, 가독성, 그리고 고유 이미지 사용 전략을 공개합니다.",
+                "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000",
+                "url": "posts/post-2026-02-24-a79fcd75.html"
+        },
+        {
+                "title": "AI 에이전트를 활용한 1인 블로그 자동화 수익 구조 설계법",
+                "date": "2026-02-24",
+                "category": "수익화 팁",
+                "summary": "OpenClaw와 같은 AI 도구를 활용하여 콘텐츠 기획부터 배포까지 자동화함으로써 지속 가능한 수익을 창출하는 시스템 구축 가이드를 소개합니다.",
+                "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1000",
+                "url": "posts/post-2026-02-24-28a430d9.html"
+        },
+        {
+                "title": "디지털 노마드를 위한 앱 서비스 수익화 전략: 광고 vs 구독",
+                "date": "2026-02-24",
+                "category": "수익화 팁",
+                "summary": "Block King과 같은 인디 앱 개발자가 선택할 수 있는 다양한 수익 모델의 장단점을 분석하고 최적의 조합을 제안합니다.",
+                "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000",
+                "url": "posts/post-2026-02-24-a8a4629a.html"
+        },
         {
                 "title": "오픈AI 챗봇 광고 도입과 수익 모델의 다변화 시도",
                 "date": "2026-02-24",
@@ -566,7 +591,8 @@
             news: posts.filter(p => p.category === 'AI 최신뉴스').length,
             dev: posts.filter(p => p.category === 'AI를 활용한 개발정보').length,
             travel: posts.filter(p => p.category === '여행').length,
-            openclaw: posts.filter(p => p.category === 'OpenClaw').length
+            openclaw: posts.filter(p => p.category === 'OpenClaw').length,
+            money: posts.filter(p => p.category === '수익화 팁').length
         };
 
         document.getElementById('count-all').innerText = counts.all;
@@ -574,6 +600,7 @@
         document.getElementById('count-dev').innerText = counts.dev;
         document.getElementById('count-travel').innerText = counts.travel;
         document.getElementById('count-openclaw').innerText = counts.openclaw;
+        document.getElementById('count-money').innerText = counts.money;
     }
 
     // Initial render
