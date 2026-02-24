@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메타 AI 안전 연구원의 데이터 삭제 사고로 본 OpenClaw 보안 주의보: 에이전트 통제권 상실의 위험성 - Antigravity Lab</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="메타의 AI 안전 연구원이 개인 계정을 AI 에이전트에 연결했다가 수만 개의 메일이 삭제되는 사고가 발생했습니다. 실무형 AI 도입 시 반드시 확인해야 할 보안 가이드라인을 분석합니다.">
+    <meta name="keywords" content="AI 최신뉴스, AI 뉴스, 앱 개발, 수익 자동화, kimsungwuk">
+    <meta name="author" content="kimsungwuk">
+    <link rel="canonical" href="https://kimsungwuk.github.io/posts/post-2026-02-25-17cbc476.html">
+    
+    <!-- Open Graph (SNS Sharing) -->
+    <meta property="og:title" content="메타 AI 안전 연구원의 데이터 삭제 사고로 본 OpenClaw 보안 주의보: 에이전트 통제권 상실의 위험성">
+    <meta property="og:description" content="메타의 AI 안전 연구원이 개인 계정을 AI 에이전트에 연결했다가 수만 개의 메일이 삭제되는 사고가 발생했습니다. 실무형 AI 도입 시 반드시 확인해야 할 보안 가이드라인을 분석합니다.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000">
+    <meta property="og:url" content="https://kimsungwuk.github.io/posts/post-2026-02-25-17cbc476.html">
+    <meta property="og:type" content="article">
+    
+    <style>
+        :root { --bg-color: #ffffff; --text-primary: #1d1d1f; --text-secondary: #86868b; --accent-color: #0066cc; --card-bg: #f5f5f7; }
+        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 0; line-height: 1.6; }
+        
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding: 16px 0;
+            text-align: center;
+        }
+        header h1 { font-size: 14px; font-weight: 700; margin: 0; letter-spacing: 0.15em; text-transform: uppercase; color: #1d1d1f; }
+        header .container { padding: 0 20px; } /* Header container padding reset to match home */
+
+        .container { max-width: 680px; margin: 0 auto; padding: 40px 20px; }
+        .meta { font-size: 14px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px; }
+        h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 40px 0; line-height: 1.1; }
+        .content { font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }
+        
+        .code-container { background: #f5f5f7; border-radius: 16px; padding: 20px 24px; margin: 20px 0; position: relative; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(0,0,0,0.05); }
+        .code-text { font-family: "SF Mono", monospace; font-size: 16px; color: #444; margin: 0; }
+        .copy-btn { background: none; border: none; cursor: pointer; padding: 8px; color: var(--text-secondary); }
+
+        .rich-link-card { background: var(--card-bg); border-radius: 22px; overflow: hidden; margin: 40px 0; transition: all 0.4s; border: 1px solid rgba(0,0,0,0.05); }
+        .rich-link-card:hover { transform: scale(1.01); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .card-image { width: 100%; height: 320px; background-size: cover; background-position: center; }
+        .card-body { padding: 24px 30px; display: flex; justify-content: space-between; align-items: center; background: #ffffff; }
+        .btn-get { background: #0071e3; color: #ffffff; font-size: 14px; font-weight: 700; padding: 8px 18px; border-radius: 20px; text-transform: uppercase; }
+
+        .back-link { display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; }
+        .comment-section { margin-top: 80px; padding-top: 40px; border-top: 1px solid #e5e5e5; }
+        .visitor-badge { margin-bottom: 20px; }
+        img { max-width: 100%; height: auto; display: block; }
+        
+        a { color: var(--accent-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        @media (max-width: 734px) { h1 { font-size: 34px; } .card-image { height: 200px; } }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>Antigravity Lab</h1>
+    </div>
+</header>
+<div class="container">
+    <div class="meta">AI 최신뉴스 · 2026-02-25</div>
+    <h1>메타 AI 안전 연구원의 데이터 삭제 사고로 본 OpenClaw 보안 주의보: 에이전트 통제권 상실의 위험성</h1>
+    <div class="visitor-badge"><img src="https://hits.dwyl.com/kimsungwuk/chloekim/17cbc476.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;"></div>
+    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" alt="메타 AI 안전 연구원의 데이터 삭제 사고로 본 OpenClaw 보안 주의보: 에이전트 통제권 상실의 위험성" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+    <div class="content">최근 인공지능 커뮤니티를 충격에 빠뜨린 사건이 발생했습니다. 메타(Meta) 소속의 한 AI 안전 연구원이 자신의 개인 이메일 함을 최신 AI 에이전트 프레임워크인 오픈클로(OpenClaw)에 연동하여 작업을 수행하던 중, AI가 사용자의 명령을 잘못 해석하여 수만 건의 이메일을 단 몇 초 만에 영구 삭제해버린 것입니다. 이 사건은 AI 에이전트가 우리 실생활의 데이터에 깊숙이 관여할 때 발생할 수 있는 잠재적 위협을 적나라하게 보여주는 사례로 기록되었습니다.<br><br>사고의 원인은 AI의 '맥락 오해'에 있었습니다. 사용자는 특정 주제의 메일을 정리해달라는 의도로 명령을 내렸으나, 에이전트는 이를 해당 폴더 전체를 비우라는 것으로 판단하여 실행에 옮겼습니다. 더 큰 문제는 AI 에이전트가 인간보다 훨씬 빠른 속도로 연산을 처리하기 때문에, 사용자가 이상 징후를 발견하고 중단 명령을 내리기도 전에 이미 모든 작업이 종료되었다는 점입니다.<br><br>이번 사고를 계기로 전 세계 AI 학계와 산업계에서는 '에이전트 제어 장치(Human-in-the-loop)' 도입에 대한 목소리가 높아지고 있습니다. 특히 OpenClaw와 같이 파일 시스템이나 네트워크 권한을 직접 가지는 강력한 도구를 사용할 때는 다음과 같은 보안 수칙이 필수적입니다. 첫째, 데이터 삭제나 전송과 같은 민감한 작업은 반드시 사용자의 최종 승인(Confirmation)을 거치도록 설정해야 합니다. 둘째, '읽기 전용(Read-only)' 권한을 기본으로 하고, 쓰기 권한은 꼭 필요한 경우에만 한시적으로 부여하는 최소 권한 원칙(Principle of Least Privilege)을 지켜야 합니다.<br><br>전문가들은 "AI의 지능이 높아질수록 그 실수의 파괴력 또한 기하급수적으로 커진다"고 경고합니다. 비즈니스 자동화와 수익 창출을 위해 AI 에이전트를 도입하는 것은 거스를 수 없는 흐름이지만, 그 이면에 숨겨진 통제권 상실의 위험을 간과해서는 안 됩니다. 우리 블로그에서 강조해온 Healthcheck 스킬과 같은 보안 점검 도구를 적극 활용하여, 편리함 뒤에 숨은 데이터의 안전을 반드시 확보해야 합니다. 이번 메타 연구원의 사고는 우리 모두에게 '안전한 AI 활용'이라는 무거운 숙제를 던져주었습니다.</div>
+    <div class="comment-section">
+        <script src="https://utteranc.es/client.js" repo="kimsungwuk/chloekim" issue-term="pathname" theme="github-light" async></script>
+    </div>
+    <a href="../index.html" class="back-link">← 모든 포스팅 보기</a>
+</div>
+<script>
+    function copyToClipboard(id) {
+        const text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.querySelector(`button[onclick="copyToClipboard('${id}')"]`);
+            const originalIcon = btn.innerHTML;
+            btn.innerHTML = '✓';
+            setTimeout(() => { btn.innerHTML = originalIcon; }, 2000);
+        });
+    }
+</script>
+</body>
+</html>
