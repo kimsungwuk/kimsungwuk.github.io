@@ -125,6 +125,7 @@
 
     function renderPosts(filter = 'all') {
         const container = document.getElementById('posts-container');
+        if (!container) return;
         container.innerHTML = '';
         posts.forEach(post => {
             if (filter !== 'all' && post.category !== filter) return;
@@ -155,18 +156,27 @@
     }
 
     function updateCounts() {
-        document.getElementById('count-all').innerText = posts.length;
-        document.getElementById('count-psy').innerText = posts.filter(p => p.category === '심리테스트').length;
-        document.getElementById('count-news').innerText = posts.filter(p => p.category === 'AI 최신뉴스').length;
-        document.getElementById('count-dev').innerText = posts.filter(p => p.category === 'AI를 활용한 개발정보').length;
-        document.getElementById('count-openclaw').innerText = posts.filter(p => p.category === 'OpenClaw').length;
-        document.getElementById('count-money').innerText = posts.filter(p => p.category === '수익화 팁').length;
+        if (document.getElementById('count-all')) document.getElementById('count-all').innerText = posts.length;
+        if (document.getElementById('count-psy')) document.getElementById('count-psy').innerText = posts.filter(p => p.category === '심리테스트').length;
+        if (document.getElementById('count-news')) document.getElementById('count-news').innerText = posts.filter(p => p.category === 'AI 최신뉴스').length;
+        if (document.getElementById('count-dev')) document.getElementById('count-dev').innerText = posts.filter(p => p.category === 'AI를 활용한 개발정보').length;
+        if (document.getElementById('count-openclaw')) document.getElementById('count-openclaw').innerText = posts.filter(p => p.category === 'OpenClaw').length;
+        if (document.getElementById('count-money')) document.getElementById('count-money').innerText = posts.filter(p => p.category === '수익화 팁').length;
     }
 
-    window.onload = function() {
+    // Try multiple trigger points for initialization
+    function init() {
+        console.log("Initializing blog...");
         renderPosts();
         updateCounts();
-    };
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+    window.onload = init;
 </script>
 </body>
 </html>
