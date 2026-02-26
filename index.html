@@ -156,9 +156,10 @@
         if (e) e.preventDefault();
         document.querySelectorAll('.category-pill').forEach(pill => {
             pill.classList.remove('active');
+            if (pill.getAttribute('onclick').includes("'"+category+"'")) {
+                pill.classList.add('active');
+            }
         });
-        const target = e ? e.currentTarget : document.querySelector(`[onclick*="'${category}'"]`);
-        if (target) target.classList.add('active');
         renderPosts(category);
     }
 
@@ -171,8 +172,18 @@
         if (document.getElementById('count-money')) document.getElementById('count-money').innerText = posts.filter(p => p.category === '수익화 팁').length;
     }
 
-    renderPosts();
-    updateCounts();
+    // Try multiple trigger points for initialization
+    function init() {
+        renderPosts();
+        updateCounts();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+    window.onload = init;
 </script>
 </body>
 </html>
