@@ -120,18 +120,11 @@
             "summary": "단순한 기술을 넘어 비즈니스 생태계를 장악하는 오픈 소스 에이전트 프레임워크의 힘을 분석합니다. 50억 달러 가치의 탄생과 온톨로지 기반의 미래형 AI 비즈니스 로드맵을 제시합니다.",
             "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1000",
             "url": "posts/post-2026-02-25-4eeec8d8.html"
-        },
-        {
-            "title": "OpenClaw 필수 스킬 분석 12탄: 월 10달러로 무제한 AI 에이전트를 사용하는 비결, GitHub Copilot 연동 가이드",
-            "date": "2026-02-25",
-            "category": "OpenClaw",
-            "summary": "폭증하는 AI API 비용이 걱정이신가요? GitHub Copilot 요금제를 OpenClaw에 연결하여 월 10달러로 고성능 AI 모델을 무제한으로 활용하는 해자(Moat)급 꿀팁을 상세히 분석합니다.",
-            "image": "https://images.unsplash.com/photo-1618401471353-b98aadebc25a?auto=format&fit=crop&q=80&w=1000",
-            "url": "posts/post-2026-02-25-07919899.html"
         }
     ];
 
     function renderPosts(filter = 'all') {
+        console.log("Rendering filter:", filter);
         const container = document.getElementById('posts-container');
         if (!container) return;
         container.innerHTML = '';
@@ -156,7 +149,7 @@
         if (e) e.preventDefault();
         document.querySelectorAll('.category-pill').forEach(pill => {
             pill.classList.remove('active');
-            if (pill.innerText.includes(category) || (category === 'all' && pill.innerText.includes('전체'))) {
+            if (pill.getAttribute('onclick').includes("'"+category+"'")) {
                 pill.classList.add('active');
             }
         });
@@ -172,19 +165,10 @@
         if (document.getElementById('count-money')) document.getElementById('count-money').innerText = posts.filter(p => p.category === '수익화 팁').length;
     }
 
-    // Direct execution
+    // Direct and repeated init to ensure rendering
     renderPosts();
     updateCounts();
-
-    // Secondary execution just in case
-    document.addEventListener('DOMContentLoaded', () => {
-        renderPosts();
-        updateCounts();
-    });
-    window.onload = () => {
-        renderPosts();
-        updateCounts();
-    };
+    setTimeout(renderPosts, 500);
 </script>
 </body>
 </html>
