@@ -17,10 +17,10 @@
         .section-title { font-size: 28px; font-weight: 600; margin-bottom: 30px; letter-spacing: -0.01em; }
         .categories { display: flex; gap: 12px; margin-bottom: 30px; overflow-x: auto; padding-bottom: 10px; }
         .category-pill { background: white; border: 1px solid #d2d2d7; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; color: var(--text-primary); cursor: pointer; transition: all 0.2s; white-space: nowrap; text-decoration: none; display: flex; align-items: center; gap: 6px; }
-        .category-pill:hover, .category-pill.active { background: var(--text-primary); color: white; border-color: var(--text-primary); }
+        .category-pill.active { background: var(--text-primary); color: white; border-color: var(--text-primary); }
         .post-count { font-size: 11px; opacity: 0.6; font-weight: 400; }
         .post-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-bottom: 60px; }
-        .post-card { background: var(--card-bg); border-radius: 18px; overflow: hidden; transition: all 0.3s cubic-bezier(0, 0, 0.5, 1); text-decoration: none; color: inherit; display: flex; flex-direction: column; box-shadow: 0 4px 6px rgba(0,0,0,0.02); height: 100%; }
+        .post-card { background: var(--card-bg); border-radius: 18px; overflow: hidden; transition: all 0.3s cubic-bezier(0, 0, 0.5, 1); text-decoration: none; color: inherit; display: flex; flex-direction: column; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
         .post-card:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
         .post-card img { width: 100%; height: 200px; object-fit: cover; }
         .post-card-content { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
@@ -156,34 +156,22 @@
         if (e) e.preventDefault();
         document.querySelectorAll('.category-pill').forEach(pill => {
             pill.classList.remove('active');
-            if (pill.getAttribute('onclick').includes("'"+category+"'")) {
-                pill.classList.add('active');
-            }
+            if (pill.innerText.includes(category)) pill.classList.add('active');
         });
         renderPosts(category);
     }
 
     function updateCounts() {
-        if (document.getElementById('count-all')) document.getElementById('count-all').innerText = posts.length;
-        if (document.getElementById('count-psy')) document.getElementById('count-psy').innerText = posts.filter(p => p.category === '심리테스트').length;
-        if (document.getElementById('count-news')) document.getElementById('count-news').innerText = posts.filter(p => p.category === 'AI 최신뉴스').length;
-        if (document.getElementById('count-dev')) document.getElementById('count-dev').innerText = posts.filter(p => p.category === 'AI를 활용한 개발정보').length;
-        if (document.getElementById('count-openclaw')) document.getElementById('count-openclaw').innerText = posts.filter(p => p.category === 'OpenClaw').length;
-        if (document.getElementById('count-money')) document.getElementById('count-money').innerText = posts.filter(p => p.category === '수익화 팁').length;
+        document.getElementById('count-all').innerText = posts.length;
+        document.getElementById('count-psy').innerText = posts.filter(p => p.category === '심리테스트').length;
+        document.getElementById('count-news').innerText = posts.filter(p => p.category === 'AI 최신뉴스').length;
+        document.getElementById('count-dev').innerText = posts.filter(p => p.category === 'AI를 활용한 개발정보').length;
+        document.getElementById('count-openclaw').innerText = posts.filter(p => p.category === 'OpenClaw').length;
+        document.getElementById('count-money').innerText = posts.filter(p => p.category === '수익화 팁').length;
     }
 
-    // Try multiple trigger points for initialization
-    function init() {
-        renderPosts();
-        updateCounts();
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
-        init();
-    }
-    window.onload = init;
+    renderPosts();
+    updateCounts();
 </script>
 </body>
 </html>
