@@ -780,12 +780,12 @@
     function updateCounts() {
         const counts = {
             all: posts.length,
+            psy: posts.filter(p => p.category === '심리테스트').length,
             news: posts.filter(p => p.category === 'AI 최신뉴스').length,
             dev: posts.filter(p => p.category === 'AI를 활용한 개발정보').length,
             travel: posts.filter(p => p.category === '여행').length,
             openclaw: posts.filter(p => p.category === 'OpenClaw').length,
-            money: posts.filter(p => p.category === '수익화 팁').length,
-            psy: posts.filter(p => p.category === '심리테스트').length
+            money: posts.filter(p => p.category === '수익화 팁').length
         };
 
         document.getElementById('count-all').innerText = counts.all;
