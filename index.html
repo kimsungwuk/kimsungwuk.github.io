@@ -247,6 +247,7 @@
     
     <div class="categories">
         <a href="#" class="category-pill active" onclick="filterCategory('all')">전체 <span id="count-all" class="post-count"></span></a>
+        <a href="#" class="category-pill" onclick="filterCategory('심리테스트')">심리테스트 <span id="count-psy" class="post-count"></span></a>
         <a href="#" class="category-pill" onclick="filterCategory('AI 최신뉴스')">AI 최신뉴스 <span id="count-news" class="post-count"></span></a>
         <a href="#" class="category-pill" onclick="filterCategory('AI를 활용한 개발정보')">AI를 활용한 개발정보 <span id="count-dev" class="post-count"></span></a>
         <a href="#" class="category-pill" onclick="filterCategory('여행')">여행 <span id="count-travel" class="post-count"></span></a>
@@ -780,6 +781,7 @@
     function updateCounts() {
         const counts = {
             all: posts.length,
+            psy: posts.filter(p => p.category === '심리테스트').length,
             news: posts.filter(p => p.category === 'AI 최신뉴스').length,
             dev: posts.filter(p => p.category === 'AI를 활용한 개발정보').length,
             travel: posts.filter(p => p.category === '여행').length,
@@ -788,6 +790,7 @@
         };
 
         document.getElementById('count-all').innerText = counts.all;
+        document.getElementById('count-psy').innerText = counts.psy;
         document.getElementById('count-news').innerText = counts.news;
         document.getElementById('count-dev').innerText = counts.dev;
         document.getElementById('count-travel').innerText = counts.travel;
