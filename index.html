@@ -781,21 +781,23 @@
     function updateCounts() {
         const counts = {
             all: posts.length,
-            psy: posts.filter(p => p.category === '심리테스트').length,
             news: posts.filter(p => p.category === 'AI 최신뉴스').length,
             dev: posts.filter(p => p.category === 'AI를 활용한 개발정보').length,
             travel: posts.filter(p => p.category === '여행').length,
             openclaw: posts.filter(p => p.category === 'OpenClaw').length,
-            money: posts.filter(p => p.category === '수익화 팁').length
+            money: posts.filter(p => p.category === '수익화 팁').length,
+            psy: posts.filter(p => p.category === '심리테스트').length
         };
 
         document.getElementById('count-all').innerText = counts.all;
-        document.getElementById('count-psy').innerText = counts.psy;
         document.getElementById('count-news').innerText = counts.news;
         document.getElementById('count-dev').innerText = counts.dev;
         document.getElementById('count-travel').innerText = counts.travel;
         document.getElementById('count-openclaw').innerText = counts.openclaw;
         document.getElementById('count-money').innerText = counts.money;
+        
+        const psyEl = document.getElementById('count-psy');
+        if (psyEl) psyEl.innerText = counts.psy;
     }
 
     // Initial render
