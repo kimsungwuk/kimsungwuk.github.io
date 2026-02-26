@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나의 진짜 성격 유형 분석 (정밀 12문항 버전) - ANTIGRAVITY LAB</title>
+    <style>
+        :root { --bg-color: #ffffff; --text-primary: #1d1d1f; --text-secondary: #86868b; --accent-color: #0066cc; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; background-color: #f5f5f7; color: var(--text-primary); margin: 0; padding: 0; line-height: 1.6; }
+        .container { max-width: 680px; margin: 0 auto; padding: 80px 20px; background: white; }
+        .meta { font-size: 14px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px; }
+        h1 { font-size: 42px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 20px 0; line-height: 1.2; }
+        .back-link { display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; text-align: center; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="meta">심리테스트 · 2026-02-26</div>
+    <h1>나의 진짜 성격 유형 분석 (정밀 12문항 버전)</h1>
+    <img src="https://images.unsplash.com/photo-1502444330042-d1a1ddf9bb5b?q=80&w=2000&auto=format&fit=crop" style="width:100%; border-radius:18px; margin-bottom:40px;">
+    <div class="content">
+        
+    <div id="test-container-mbti" style="font-family: 'Pretendard', sans-serif; max-width: 600px; margin: 40px auto; padding: 35px; border-radius: 28px; background: #ffffff; box-shadow: 0 15px 35px rgba(0,0,0,0.06); text-align: center; border: 1px solid #f0f0f2;">
+        <div id="intro-mbti">
+            <div style="font-size: 50px; margin-bottom: 20px;">✨</div>
+            <h2 style="font-size: 26px; color: #1d1d1f; margin-bottom: 15px; font-weight: 700;">나의 진짜 성격 유형 분석 (정밀 12문항 버전)</h2>
+            <p style="color: #48484a; line-height: 1.7; margin-bottom: 35px; font-size: 17px;">당신도 모르는 당신의 진짜 모습을 확인해 보세요.</p>
+            <button onclick="startTest_mbti()" style="width: 100%; padding: 20px; background: #007aff; color: white; border: none; border-radius: 16px; font-size: 18px; font-weight: 600; cursor: pointer; transition: 0.2s;">분석 시작하기</button>
+        </div>
+
+        <div id="quiz-mbti" style="display:none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <span id="q-count-mbti" style="font-size: 14px; font-weight: 600; color: #007aff;"></span>
+                <span style="font-size: 14px; color: #86868b;">Personality Test</span>
+            </div>
+            <div style="height: 6px; background: #f2f2f7; border-radius: 3px; margin-bottom: 45px; overflow: hidden;">
+                <div id="progress-mbti" style="height: 100%; background: #007aff; width: 0%; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);"></div>
+            </div>
+            <h3 id="q-text-mbti" style="font-size: 22px; color: #1d1d1f; margin-bottom: 40px; line-height: 1.5; font-weight: 600; min-height: 80px;"></h3>
+            <div id="options-mbti"></div>
+        </div>
+
+        <div id="loading-mbti" style="display:none; padding: 50px 0;">
+            <div class="loader" style="border: 4px solid #f3f3f3; border-top: 4px solid #007aff; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+            <p style="color: #86868b; font-weight: 500;">결과를 분석 중입니다...</p>
+        </div>
+
+        <div id="result-mbti" style="display:none; animation: fadeIn 0.8s;">
+            <h2 id="res-name-mbti" style="font-size: 32px; color: #1d1d1f; margin-bottom: 25px; font-weight: 700;"></h2>
+            <div id="res-desc-mbti" style="text-align: left; background: #f5f5f7; padding: 30px; border-radius: 20px; line-height: 1.9; color: #3a3a3c; font-size: 17px; margin-bottom: 35px; white-space: pre-wrap;"></div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px;">
+                <div style="background: #e5f1ff; padding: 15px; border-radius: 12px;">
+                    <small style="color: #007aff; font-weight: 700; display: block; margin-bottom: 5px;">최고의 궁합</small>
+                    <span id="res-match-mbti" style="font-weight: 600; color: #1d1d1f;"></span>
+                </div>
+                <div style="background: #fff0f0; padding: 15px; border-radius: 12px;">
+                    <small style="color: #ff3b30; font-weight: 700; display: block; margin-bottom: 5px;">최악의 궁합</small>
+                    <span id="res-avoid-mbti" style="font-weight: 600; color: #1d1d1f;"></span>
+                </div>
+            </div>
+            <button onclick="location.reload()" style="width: 100%; padding: 18px; background: #1d1d1f; color: white; border: none; border-radius: 14px; cursor: pointer; font-weight: 600;">다시하기</button>
+        </div>
+    </div>
+
+    <script>
+        const questions_mbti = [{"q": "주말에 갑자기 친구가 집 근처라고 나오라고 한다면?", "options": [{"text": "반갑다! 바로 준비해서 나간다", "type": "E"}, {"text": "당황스럽다. 오늘은 혼자 쉬고 싶었는데...", "type": "I"}]}, {"q": "낯선 사람들과 함께 있는 모임에서 나는?", "options": [{"text": "먼저 말을 걸며 분위기를 주도한다", "type": "E"}, {"text": "누가 말을 걸어줄 때까지 기다린다", "type": "I"}]}, {"q": "축제나 파티에 다녀온 뒤 나의 에너지는?", "options": [{"text": "사람들과 즐겁게 놀아서 충전된 느낌이다", "type": "E"}, {"text": "즐거웠지만 기운이 다 빠져서 쉬어야 한다", "type": "I"}]}, {"q": "새로운 기기를 샀을 때 나는?", "options": [{"text": "설명서를 꼼꼼히 읽고 기능을 숙지한다", "type": "S"}, {"text": "이것저것 만져보며 직관적으로 알아낸다", "type": "N"}]}, {"q": "영화나 드라마를 볼 때 더 끌리는 설정은?", "options": [{"text": "실화 기반의 현실적인 이야기", "type": "S"}, {"text": "초능력이나 미래를 다룬 판타지 이야기", "type": "N"}]}, {"q": "길을 설명할 때 나는?", "options": [{"text": "편의점 끼고 우회전해서 100m 가세요", "type": "S"}, {"text": "쭉 가다가 큰 건물 나오면 거기서 꺾으세요", "type": "N"}]}, {"q": "친구가 '나 사고 났어'라고 연락 왔을 때?", "options": [{"text": "보험은 들었어? 어디가 부딪힌 거야?", "type": "T"}, {"text": "헉, 너무 놀랐겠다! 다친 데는 없어?", "type": "F"}]}, {"q": "결정을 내릴 때 나는?", "options": [{"text": "객관적인 사실과 논리를 따진다", "type": "T"}, {"text": "내 결정이 주변 사람들에게 미칠 영향을 고려한다", "type": "F"}]}, {"q": "고민 상담을 해줄 때 나는?", "options": [{"text": "확실한 해결책을 찾아주는 편이다", "type": "T"}, {"text": "친구의 감정에 공감하고 위로해주는 편이다", "type": "F"}]}, {"q": "여행을 갈 때 나의 스타일은?", "options": [{"text": "시간별 일정을 엑셀로 정리할 만큼 계획적이다", "type": "J"}, {"text": "항공권과 숙소만 정하고 나머지는 가서 정한다", "type": "P"}]}, {"q": "과제를 하거나 업무를 처리할 때?", "options": [{"text": "미리미리 계획을 세워 여유 있게 끝낸다", "type": "J"}, {"text": "마감 직전의 압박감이 있어야 효율이 오른다", "type": "P"}]}, {"q": "방 안의 책상 상태는?", "options": [{"text": "항상 물건들이 제 자리에 정리되어 있다", "type": "J"}, {"text": "자유롭게 어질러져 있지만 나만의 질서가 있다", "type": "P"}]}];
+        const results_mbti = {"ISTJ": {"name": "신중한 현실주의자", "desc": "한번 시작한 일은 끝까지 책임지는 성실파입니다. 규칙을 준수하고 정확한 일 처리를 선호합니다.", "match": "ESFP", "avoid": "ENFP"}, "ISFJ": {"name": "헌신적인 수호자", "desc": "타인을 돕는 것에 큰 보람을 느끼는 다정한 성격입니다. 조용하지만 맡은 바 책임을 다합니다.", "match": "ESFP", "avoid": "ENTP"}, "INFJ": {"name": "신비로운 예언자", "desc": "직관력이 뛰어나고 본인만의 확고한 가치관이 있습니다. 겉으로는 조용하지만 내면은 열정적입니다.", "match": "ENFP", "avoid": "ESTP"}, "INTJ": {"name": "전략적인 설계자", "desc": "통찰력이 깊고 논리적이며 완벽주의적인 성향이 강합니다. 지적인 호기심이 매우 높습니다.", "match": "ENFP", "avoid": "ESFP"}, "ISTP": {"name": "만능 재주꾼", "desc": "냉철한 이성을 가졌지만 손재주가 좋고 도구를 잘 다룹니다. 관찰력이 매우 뛰어납니다.", "match": "ESFJ", "avoid": "ENFJ"}, "ISFP": {"name": "예술가적인 영혼", "desc": "현재의 즐거움을 중시하며 미적 감각이 뛰어납니다. 겸손하고 타인에 대한 배려가 깊습니다.", "match": "ESTJ", "avoid": "ENTJ"}, "INFP": {"name": "낭만적인 중재자", "desc": "공감 능력이 탁월하고 이상주의적인 꿈을 꿉니다. 내면의 가치를 가장 중요하게 생각합니다.", "match": "ENFJ", "avoid": "ESTJ"}, "INTP": {"name": "논리적인 사색가", "desc": "비논리적인 것을 싫어하며 지적 탐구를 즐깁니다. 조용하지만 아이디어가 넘치는 천재형입니다.", "match": "ENTJ", "avoid": "ESFJ"}, "ESTP": {"name": "활동적인 모험가", "desc": "말보다 행동이 앞서는 타입으로 적응력이 최고입니다. 위기 상황에서 재치가 빛납니다.", "match": "ISFJ", "avoid": "INFJ"}, "ESFP": {"name": "자유로운 연예인", "desc": "지루한 건 참지 못하며 어디서든 분위기 메이커 역할을 합니다. 사람 만나는 것을 좋아합니다.", "match": "ISFJ", "avoid": "INTJ"}, "ENFP": {"name": "재기발랄한 활동가", "desc": "긍정 에너지가 넘치고 상상력이 풍부합니다. 새로운 만남과 기회를 즐기며 열정적입니다.", "match": "INFJ", "avoid": "ISTJ"}, "ENTP": {"name": "뜨거운 토론가", "desc": "두뇌 회전이 빠르고 논쟁을 즐기는 아이디어 뱅크입니다. 창의적인 문제 해결 능력이 좋습니다.", "match": "INFJ", "avoid": "ISFJ"}, "ESTJ": {"name": "엄격한 관리자", "desc": "사무적이고 실질적인 일 처리에 탁월합니다. 질서와 체계를 중요하게 생각하는 리더형입니다.", "match": "ISFP", "avoid": "INFP"}, "ESFJ": {"name": "사교적인 외교관", "desc": "사람들과의 조화를 중시하며 세심하게 타인을 챙깁니다. 성실하고 협동심이 강합니다.", "match": "ISTP", "avoid": "INTP"}, "ENFJ": {"name": "정의로운 사회운동가", "desc": "타인의 성장을 돕는 것에 기쁨을 느끼며 리더십이 뛰어납니다. 공감 능력이 매우 좋습니다.", "match": "INFP", "avoid": "ISTP"}, "ENTJ": {"name": "대담한 통솔자", "desc": "강력한 추진력과 결단력을 가졌습니다. 목표 달성을 위해 계획적으로 움직이는 리더입니다.", "match": "INTP", "avoid": "ISFP"}};
+        let currentIdx_mbti = 0;
+        let scores_mbti = { E:0, I:0, S:0, N:0, T:0, F:0, J:0, P:0 };
+
+        function startTest_mbti() {
+            document.getElementById('intro-mbti').style.display = 'none';
+            document.getElementById('quiz-mbti').style.display = 'block';
+            renderQuestion_mbti();
+        }
+
+        function renderQuestion_mbti() {
+            const q = questions_mbti[currentIdx_mbti];
+            document.getElementById('q-text-mbti').innerText = q.q;
+            document.getElementById('q-count-mbti').innerText = (currentIdx_mbti + 1) + " / " + questions_mbti.length;
+            const optContainer = document.getElementById('options-mbti');
+            optContainer.innerHTML = '';
+            
+            q.options.forEach((opt) => {
+                const btn = document.createElement('button');
+                btn.innerText = opt.text;
+                btn.style.cssText = "display: block; width: 100%; padding: 18px; margin: 15px 0; border: 2px solid #e5e5ea; border-radius: 16px; background: white; color: #1d1d1f; font-size: 17px; font-weight: 500; cursor: pointer; transition: 0.2s; text-align: left;";
+                btn.onclick = () => selectOption_mbti(opt.type);
+                optContainer.appendChild(btn);
+            });
+            document.getElementById('progress-mbti').style.width = ((currentIdx_mbti) / questions_mbti.length) * 100 + "%";
+        }
+
+        function selectOption_mbti(type) {
+            scores_mbti[type]++;
+            currentIdx_mbti++;
+            if(currentIdx_mbti < questions_mbti.length) {
+                renderQuestion_mbti();
+            } else {
+                document.getElementById('progress-mbti').style.width = "100%";
+                document.getElementById('quiz-mbti').style.display = 'none';
+                document.getElementById('loading-mbti').style.display = 'block';
+                setTimeout(showResult_mbti, 1000);
+            }
+        }
+
+        function showResult_mbti() {
+            document.getElementById('loading-mbti').style.display = 'none';
+            document.getElementById('result-mbti').style.display = 'block';
+            const mbti = (scores_mbti.E >= scores_mbti.I ? "E" : "I") + (scores_mbti.S >= scores_mbti.N ? "S" : "N") + (scores_mbti.T >= scores_mbti.F ? "T" : "F") + (scores_mbti.J >= scores_mbti.P ? "J" : "P");
+            const res = results_mbti[mbti];
+            document.getElementById('res-name-mbti').innerText = res.name;
+            document.getElementById('res-desc-mbti').innerText = res.desc;
+            document.getElementById('res-match-mbti').innerText = res.match;
+            document.getElementById('res-avoid-mbti').innerText = res.avoid;
+        }
+    </script>
+    <style>
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+    
+    </div>
+    <a href="../index.html" class="back-link">← 모든 포스팅 보기</a>
+</div>
+</body>
+</html>
