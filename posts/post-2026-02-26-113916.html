@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나와 닮은 신비한 숲의 정령 찾기 - ANTIGRAVITY LAB</title>
+    <style>
+        :root { --bg-color: #ffffff; --text-primary: #1d1d1f; --text-secondary: #86868b; --accent-color: #0066cc; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 0; line-height: 1.6; }
+        .container { max-width: 680px; margin: 0 auto; padding: 80px 20px; }
+        .meta { font-size: 14px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px; }
+        h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 10px 0; line-height: 1.1; }
+        .back-link { display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }
+        .comment-section { margin-top: 80px; padding-top: 40px; border-top: 1px solid #e5e5e5; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="meta">심리테스트 · 2026-02-26</div>
+    <h1>나와 닮은 신비한 숲의 정령 찾기</h1>
+    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop" alt="나와 닮은 신비한 숲의 정령 찾기" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+    <div class="content">
+        
+    <div id="test-wrapper" style="font-family: 'Pretendard', sans-serif; background-color: #f0f7f4; padding: 20px; border-radius: 20px; margin: 40px 0;">
+        <div id="test-container" style="background: white; max-width: 500px; margin: 0 auto; padding: 30px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-align: center;">
+            
+            <div id="intro">
+                <h1 style="color: #2d6a4f; font-size: 1.8rem; margin-bottom: 10px;">🌳 숲의 정령 테스트</h1>
+                <p style="color: #666; margin-bottom: 30px;">신비한 숲속에서 당신은 어떤 정령일까요?</p>
+                <button onclick="startTest()" style="width: 100%; padding: 15px; background: #88b04b; color: white; border: none; border-radius: 12px; font-size: 1.1rem; cursor: pointer; border: 0;">테스트 시작하기</button>
+            </div>
+
+            <div id="quiz" style="display:none;">
+                <div style="height: 8px; background: #e0e0e0; border-radius: 4px; margin-bottom: 30px; overflow: hidden;">
+                    <div id="progress" style="height: 100%; background: #88b04b; width: 0%; transition: 0.3s;"></div>
+                </div>
+                <div id="question-area">
+                    <h2 id="q-text" style="font-size: 1.2rem; min-height: 60px; line-height: 1.5; color: #2d4a3e;"></h2>
+                    <button id="btn-a" onclick="select('A')" style="display: block; width: 100%; padding: 15px; margin: 10px 0; border: 2px solid #88b04b; border-radius: 12px; background: white; color: #4a6741; cursor: pointer; transition: 0.2s; font-size: 1rem;"></button>
+                    <button id="btn-b" onclick="select('B')" style="display: block; width: 100%; padding: 15px; margin: 10px 0; border: 2px solid #88b04b; border-radius: 12px; background: white; color: #4a6741; cursor: pointer; transition: 0.2s; font-size: 1rem;"></button>
+                </div>
+            </div>
+
+            <div id="result" style="display:none;">
+                <h2 style="color: #666; font-size: 1rem;">당신의 정령 타입은...</h2>
+                <div id="result-name" style="font-size: 1.6rem; font-weight: bold; color: #2d6a4f; margin: 15px 0;"></div>
+                <div id="result-desc" style="line-height: 1.7; color: #444; margin-bottom: 25px; text-align: left; background: #f9f9f9; padding: 20px; border-radius: 10px; font-size: 16px;"></div>
+                <button onclick="location.reload()" style="width: 100%; padding: 15px; background: #2d6a4f; color: white; border: none; border-radius: 12px; cursor: pointer; border: 0;">다시 하기</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            { q: "숲속 축제에 초대받았다! 당신의 선택은?", a: "북적이는 중심에서 신나게 즐긴다", b: "구석진 곳에서 조용히 구경한다", type: "EI" },
+            { q: "길가에 떨어진 낡은 상자를 발견했다", a: "상자의 모양과 재질을 관찰한다", b: "안에 보물이 들었을지 상상한다", type: "SN" },
+            { q: "친구 정령이 마법에 실패해 울고 있다", a: "원인이 뭔지 분석하고 해결해준다", b: "많이 놀랐지? 하며 토닥여준다", type: "TF" },
+            { q: "내일은 숲의 반대편으로 떠나는 날이다", a: "챙겨갈 짐 목록을 미리 적어둔다", b: "내일 아침 기분 따라 짐을 싼다", type: "JP" },
+            { q: "낯선 정령이 말을 걸어온다면?", a: "신나게 대화를 이어 나간다", b: "조금 당황하지만 필요한 말만 한다", type: "EI" },
+            { q: "구름의 모양을 보고 든 생각은?", a: "“와, 양 떼처럼 생겼네.”", b: "“구름 위엔 누가 살고 있을까?”", type: "SN" },
+            { q: "누군가 내 마법 실력을 비판한다면?", a: "내용이 맞는지 논리적으로 따져본다", b: "나를 싫어하나 싶어 마음이 상한다", type: "TF" },
+            { q: "탐험 중 갈림길이 나왔다! 당신은?", a: "이미 계획해둔 오른쪽 길로 간다", b: "더 예뻐 보이는 왼쪽 길로 가본다", type: "JP" },
+            { q: "숲의 정령들이 모여 회의를 한다면?", a: "적극적으로 내 의견을 발표한다", b: "다른 이들의 의견을 주로 듣는다", type: "EI" },
+            { q: "마법사에게 비법을 전수받을 때?", a: "정확한 동작과 순서를 배운다", b: "마법의 원리와 느낌을 체득한다", type: "SN" },
+            { q: "친구가 “나 기분이 안 좋아”라고 하면?", a: "“무슨 일 있었어?”", b: "“누가 우리 친구 속상하게 했어!”", type: "TF" },
+            { q: "숲속 도서관에 갔는데 책들이 어질러져 있다", a: "원래 자리대로 정리하고 싶다", b: "그냥 그러려니 하고 내 책을 찾는다", type: "JP" }
+        ];
+
+        const results = {
+            "ESTJ": { name: "숲의 파수꾼 (참나무 정령)", desc: "질서와 규칙을 중요하게 여기는 듬직한 정령입니다. 현실적이고 추진력이 강해 숲의 평화를 지키는 데 핵심적인 역할을 합니다." },
+            "ISTJ": { name: "숲의 기록관 (바위 정령)", desc: "조용하지만 맡은 바 책임을 다하는 신중한 정령입니다. 숲의 모든 역사를 꼼꼼하게 기록하며 변함없는 모습을 보여줍니다." },
+            "ENTJ": { name: "숲의 총사령관 (대장 나무 정령)", desc: "강력한 카리스마로 숲을 이끕니다. 효율적인 해결책을 찾아내며 모두를 성장의 길로 안내하는 탁월한 리더입니다." },
+            "INTJ": { name: "숲의 설계자 (별빛 정령)", desc: "먼 미래를 내다보는 통찰력을 가졌습니다. 독립적이고 분석적이며, 숲의 복잡한 마법 체계를 이해하고 설계합니다." },
+            "ESTP": { name: "숲의 모험가 (번개 정령)", desc: "말보다 행동이 앞서는 에너자이저! 관찰력이 뛰어나고 적응력이 좋아 어떤 숲의 위기 상황도 재치 있게 헤쳐나갑니다." },
+            "ISTP": { name: "숲의 장인 (바람 정령)", desc: "손재주가 좋고 도구를 잘 다루는 쿨한 정령입니다. 조용히 바람처럼 나타나 문제를 해결하고 유유히 사라집니다." },
+            "ENTP": { name: "숲의 발명가 (도깨비불 정령)", desc: "번뜩이는 아이디어로 숲을 놀라게 합니다. 지적 호기심이 강해 항상 새로운 마법 실험을 즐기는 창의적인 존재입니다." },
+            "INTP": { name: "숲의 사색가 (이끼 정령)", desc: "비밀스러운 숲의 원리를 탐구하는 철학자입니다. 비논리적인 것을 싫어하며 혼자만의 세계에서 깊은 사색을 즐깁니다." },
+            "ESFJ": { name: "숲의 봉사자 (이슬 정령)", desc: "주변을 세심하게 챙기고 협동을 이끄는 다정한 정령입니다. 화합을 중요하게 생각하며 숲의 분위기를 밝게 만듭니다." },
+            "ISFJ": { name: "숲의 수호자 (뿌리 정령)", desc: "보이지 않는 곳에서 묵묵히 타인을 돕습니다. 기억력이 좋고 헌신적이며, 숲의 모든 생명체를 따뜻하게 품어줍니다." },
+            "ENFJ": { name: "숲의 태양 (태양 정령)", desc: "사람들을 독려하고 이끄는 따뜻한 정령입니다. 타인의 성장을 돕는 데 큰 기쁨을 느끼며 숲에 활력을 불어넣습니다." },
+            "INFJ": { name: "숲의 예언자 (안개 정령)", desc: "직관력이 매우 뛰어나고 신비로운 분위기를 풍깁니다. 겉으로는 조용해 보이지만 내면에는 숲을 향한 깊은 신념을 품고 있습니다." },
+            "ESFP": { name: "숲의 흥부자 (나비 정령)", desc: "지루한 건 딱 질색! 어디서든 축제를 벌이는 숲의 주인공입니다. 사교적이고 낙천적이며 현재의 즐거움을 가장 소중히 여깁니다." },
+            "ISFP": { name: "숲의 예술가 (꽃 정령)", desc: "미적 감각이 뛰어나고 자유를 사랑합니다. 자신의 감정을 예술로 표현하며, 숲의 아름다움을 가장 잘 이해하는 정령입니다." },
+            "ENFP": { name: "숲의 활동가 (무지개 정령)", desc: "긍정 에너지가 넘치고 상상력이 풍부합니다. 새로운 만남을 좋아하고 다른 이들에게 꿈과 희망을 주는 무지개 같은 존재입니다." },
+            "INFP": { name: "숲의 시인 (달빛 정령)", desc: "풍부한 감수성과 몽상가적인 기질을 가졌습니다. 자신만의 가치관이 뚜렷하며 숲의 모든 존재를 진심으로 이해하려 노력합니다." }
+        };
+
+        let currentIdx = 0;
+        let score = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+
+        function startTest() {
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('quiz').style.display = 'block';
+            updateQuestion();
+        }
+
+        function updateQuestion() {
+            const q = questions[currentIdx];
+            document.getElementById('q-text').innerText = "Q" + (currentIdx + 1) + ". " + q.q;
+            document.getElementById('btn-a').innerText = q.a;
+            document.getElementById('btn-b').innerText = q.b;
+            document.getElementById('progress').style.width = ((currentIdx + 1) / questions.length) * 100 + "%";
+        }
+
+        function select(choice) {
+            const q = questions[currentIdx];
+            const typeChar = (choice === 'A') ? q.type[0] : q.type[1];
+            score[typeChar]++;
+            
+            currentIdx++;
+            if (currentIdx < questions.length) {
+                updateQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('quiz').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+            const mbti = (score.E >= score.I ? "E" : "I") + (score.S >= score.N ? "S" : "N") + (score.T >= score.F ? "T" : "F") + (score.J >= score.P ? "J" : "P");
+            const res = results[mbti];
+            document.getElementById('result-name').innerText = res.name;
+            document.getElementById('result-desc').innerText = res.desc;
+        }
+    </script>
+    
+    </div>
+
+    <div class="comment-section">
+        <script src="https://giscus.app/client.js"
+                data-repo="kimsungwuk/chloekim"
+                data-repo-id="R_kgDORUWviQ"
+                data-category="General"
+                data-category-id="DIC_kwDORUWvic4C206U"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="bottom"
+                data-theme="preferred_color_scheme"
+                data-lang="ko"
+                crossorigin="anonymous"
+                async>
+        </script>
+    </div>
+
+    <a href="../index.html" class="back-link">← 모든 포스팅 보기</a>
+</div>
+</body>
+</html>
