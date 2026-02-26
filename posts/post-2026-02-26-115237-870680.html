@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나의 연애 페르소나 찾기 - ANTIGRAVITY LAB</title>
+    <style>
+        :root { --bg-color: #ffffff; --text-primary: #1d1d1f; --text-secondary: #86868b; --accent-color: #0066cc; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 0; line-height: 1.6; }
+        .container { max-width: 680px; margin: 0 auto; padding: 80px 20px; }
+        .meta { font-size: 14px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px; }
+        h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 10px 0; line-height: 1.1; }
+        .content { font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }
+        .back-link { display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }
+        .comment-section { margin-top: 80px; padding-top: 40px; border-top: 1px solid #e5e5e5; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="meta">심리테스트 · 2026-02-26</div>
+    <h1>나의 연애 페르소나 찾기</h1>
+    <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=2000&auto=format&fit=crop" alt="나의 연애 페르소나 찾기" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+    <div class="content">
+        
+<div id="test-love" style="padding:20px; background:#fff0f3; border-radius:20px; text-align:center;">
+    <div id="intro-love">
+        <h2>💖 나의 연애 페르소나 테스트</h2>
+        <p>내 연애 스타일은 어떤 유형일까요?</p>
+        <button onclick="startLove()" style="padding:15px 30px; background:#ff4d6d; color:white; border:none; border-radius:10px; cursor:pointer;">시작하기</button>
+    </div>
+    <div id="quiz-love" style="display:none;">
+        <h3 id="q-love"></h3>
+        <button id="btn-love-a" onclick="nextLove('A')" style="display:block; width:100%; padding:15px; margin:10px 0; border:1px solid #ff4d6d; border-radius:10px; background:white;"></button>
+        <button id="btn-love-b" onclick="nextLove('B')" style="display:block; width:100%; padding:15px; margin:10px 0; border:1px solid #ff4d6d; border-radius:10px; background:white;"></button>
+    </div>
+    <div id="res-love" style="display:none;">
+        <h3>당신은 <span id="res-love-name" style="color:#ff4d6d;"></span> 입니다!</h3>
+        <p id="res-love-desc"></p>
+        <button onclick="location.reload()" style="padding:10px 20px; background:#ccc; border:none; border-radius:5px;">다시하기</button>
+    </div>
+</div>
+<script>
+    const qLove = [
+        {q:"데이트 중 계획에 없던 곳을 가자면?", a:"좋아! 새로운 곳은 언제나 환영", b:"음.. 원래 가기로 한 곳이 좋은데"},
+        {q:"연인과 다퉜을 때 당신은?", a:"그 자리에서 바로 대화로 푼다", b:"생각을 정리할 시간이 필요하다"}
+    ];
+    let idxLove = 0; let scoreLove = 0;
+    function startLove(){ document.getElementById('intro-love').style.display='none'; document.getElementById('quiz-love').style.display='block'; showLove(); }
+    function showLove(){ 
+        document.getElementById('q-love').innerText = qLove[idxLove].q;
+        document.getElementById('btn-love-a').innerText = qLove[idxLove].a;
+        document.getElementById('btn-love-b').innerText = qLove[idxLove].b;
+    }
+    function nextLove(c){
+        if(c==='A') scoreLove++;
+        idxLove++;
+        if(idxLove < qLove.length) showLove();
+        else {
+            document.getElementById('quiz-love').style.display='none';
+            document.getElementById('res-love').style.display='block';
+            if(scoreLove >= 1) {
+                document.getElementById('res-love-name').innerText = "정열적인 사랑꾼";
+                document.getElementById('res-love-desc').innerText = "당신은 즉흥적이고 에너지가 넘치는 사랑을 하는 타입입니다!";
+            } else {
+                document.getElementById('res-love-name').innerText = "신중한 수호자";
+                document.getElementById('res-love-desc').innerText = "당신은 안정감과 신뢰를 가장 중요하게 생각하는 사랑을 합니다.";
+            }
+        }
+    }
+</script>
+
+    </div>
+    <div class="comment-section">
+        <script src="https://giscus.app/client.js" data-repo="kimsungwuk/chloekim" data-repo-id="R_kgDORUWviQ" data-category="General" data-category-id="DIC_kwDORUWvic4C206U" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="ko" crossorigin="anonymous" async></script>
+    </div>
+    <a href="../index.html" class="back-link">← 모든 포스팅 보기</a>
+</div>
+</body>
+</html>

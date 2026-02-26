@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마음의 온도: 번아웃 지수 체크 - ANTIGRAVITY LAB</title>
+    <style>
+        :root { --bg-color: #ffffff; --text-primary: #1d1d1f; --text-secondary: #86868b; --accent-color: #0066cc; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 0; line-height: 1.6; }
+        .container { max-width: 680px; margin: 0 auto; padding: 80px 20px; }
+        .meta { font-size: 14px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px; }
+        h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 10px 0; line-height: 1.1; }
+        .content { font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }
+        .back-link { display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }
+        .comment-section { margin-top: 80px; padding-top: 40px; border-top: 1px solid #e5e5e5; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="meta">심리테스트 · 2026-02-26</div>
+    <h1>마음의 온도: 번아웃 지수 체크</h1>
+    <img src="https://images.unsplash.com/photo-1512438248548-3b52bf00b117?q=80&w=2000&auto=format&fit=crop" alt="마음의 온도: 번아웃 지수 체크" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+    <div class="content">
+        
+<div id="test-stress" style="padding:20px; background:#e8f1f2; border-radius:20px; text-align:center;">
+    <div id="intro-stress">
+        <h2>🌡️ 번아웃 위험도 체크</h2>
+        <p>요즘 내 마음의 온도는 어떨까요?</p>
+        <button onclick="startStress()" style="padding:15px 30px; background:#136f63; color:white; border:none; border-radius:10px; cursor:pointer;">체크 시작</button>
+    </div>
+    <div id="quiz-stress" style="display:none;">
+        <h3 id="q-stress"></h3>
+        <button onclick="nextStress(1)" style="display:block; width:100%; padding:15px; margin:10px 0; border:1px solid #136f63; border-radius:10px; background:white;">자주 그렇다</button>
+        <button onclick="nextStress(0)" style="display:block; width:100%; padding:15px; margin:10px 0; border:1px solid #136f63; border-radius:10px; background:white;">아니다</button>
+    </div>
+    <div id="res-stress" style="display:none;">
+        <h3>현재 상태: <span id="res-stress-status"></span></h3>
+        <p id="res-stress-tip"></p>
+        <button onclick="location.reload()" style="padding:10px 20px; background:#ccc; border:none; border-radius:5px;">다시하기</button>
+    </div>
+</div>
+<script>
+    const qStress = ["아침에 일어날 때 몸이 무겁나요?", "작은 일에도 예민해지나요?"];
+    let idxStress = 0; let scoreStress = 0;
+    function startStress(){ document.getElementById('intro-stress').style.display='none'; document.getElementById('quiz-stress').style.display='block'; showStress(); }
+    function showStress(){ document.getElementById('q-stress').innerText = qStress[idxStress]; }
+    function nextStress(v){
+        scoreStress += v; idxStress++;
+        if(idxStress < qStress.length) showStress();
+        else {
+            document.getElementById('quiz-stress').style.display='none';
+            document.getElementById('res-stress').style.display='block';
+            if(scoreStress >= 1) {
+                document.getElementById('res-stress-status').innerText = "주의 단계";
+                document.getElementById('res-stress-tip').innerText = "충분한 휴식이 필요한 시점입니다. 자신을 돌봐주세요.";
+            } else {
+                document.getElementById('res-stress-status').innerText = "맑음";
+                document.getElementById('res-stress-tip').innerText = "건강한 상태입니다! 현재의 템포를 유지하세요.";
+            }
+        }
+    }
+</script>
+
+    </div>
+    <div class="comment-section">
+        <script src="https://giscus.app/client.js" data-repo="kimsungwuk/chloekim" data-repo-id="R_kgDORUWviQ" data-category="General" data-category-id="DIC_kwDORUWvic4C206U" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="ko" crossorigin="anonymous" async></script>
+    </div>
+    <a href="../index.html" class="back-link">← 모든 포스팅 보기</a>
+</div>
+</body>
+</html>

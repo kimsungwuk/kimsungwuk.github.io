@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1초 선택: 이미지 심리 테스트 - ANTIGRAVITY LAB</title>
+    <style>
+        :root { --bg-color: #ffffff; --text-primary: #1d1d1f; --text-secondary: #86868b; --accent-color: #0066cc; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 0; line-height: 1.6; }
+        .container { max-width: 680px; margin: 0 auto; padding: 80px 20px; }
+        .meta { font-size: 14px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px; }
+        h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 10px 0; line-height: 1.1; }
+        .content { font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }
+        .back-link { display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }
+        .comment-section { margin-top: 80px; padding-top: 40px; border-top: 1px solid #e5e5e5; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="meta">심리테스트 · 2026-02-26</div>
+    <h1>1초 선택: 이미지 심리 테스트</h1>
+    <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?q=80&w=2000&auto=format&fit=crop" alt="1초 선택: 이미지 심리 테스트" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+    <div class="content">
+        
+<div id="test-art" style="padding:20px; background:#fffcf2; border-radius:20px; text-align:center;">
+    <h2>🎨 첫인상으로 보는 심리</h2>
+    <p>아래 이미지를 보고 가장 먼저 떠오르는 것은?</p>
+    <div style="font-size:80px;">🌑</div>
+    <button onclick="resArt('A')" style="display:block; width:100%; padding:15px; margin:10px 0; border:1px solid #eb5e28; border-radius:10px; background:white;">어두운 밤하늘의 달</button>
+    <button onclick="resArt('B')" style="display:block; width:100%; padding:15px; margin:10px 0; border:1px solid #eb5e28; border-radius:10px; background:white;">동굴의 입구</button>
+    <div id="res-art" style="display:none; margin-top:20px;">
+        <p id="res-art-text" style="font-weight:bold; color:#eb5e28;"></p>
+        <button onclick="location.reload()" style="padding:10px 20px; background:#ccc; border:none; border-radius:5px;">다시하기</button>
+    </div>
+</div>
+<script>
+    function resArt(c){
+        document.getElementById('res-art').style.display='block';
+        if(c==='A') document.getElementById('res-art-text').innerText = "낭만적이고 이상적인 성향이 강하시군요!";
+        else document.getElementById('res-art-text').innerText = "현실적이고 탐구심이 강한 성향이시군요!";
+    }
+</script>
+
+    </div>
+    <div class="comment-section">
+        <script src="https://giscus.app/client.js" data-repo="kimsungwuk/chloekim" data-repo-id="R_kgDORUWviQ" data-category="General" data-category-id="DIC_kwDORUWvic4C206U" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="ko" crossorigin="anonymous" async></script>
+    </div>
+    <a href="../index.html" class="back-link">← 모든 포스팅 보기</a>
+</div>
+</body>
+</html>
