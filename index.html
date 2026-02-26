@@ -5,14 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antigravity Lab</title>
     <style>
-        :root {
-            --bg-color: #f5f5f7;
-            --card-bg: #ffffff;
-            --text-primary: #1d1d1f;
-            --text-secondary: #86868b;
-            --accent-color: #0066cc;
-            --header-bg: rgba(255, 255, 255, 0.72);
-        }
+        :root { --bg-color: #f5f5f7; --card-bg: #ffffff; --text-primary: #1d1d1f; --text-secondary: #86868b; --accent-color: #0066cc; --header-bg: rgba(255, 255, 255, 0.72); }
         * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 0; line-height: 1.47059; font-weight: 400; letter-spacing: -0.022em; }
         header { position: sticky; top: 0; z-index: 100; background: var(--header-bg); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(0,0,0,0.1); padding: 16px 0; text-align: center; }
@@ -44,12 +37,12 @@
 <div class="container">
     <h2 class="section-title">Latest Updates</h2>
     <div id="category-list" class="categories">
-        <a href="#" class="category-pill active" data-cat="all">전체 <span id="count-all" class="post-count"></span></a>
-        <a href="#" class="category-pill" data-cat="심리테스트">심리테스트 <span id="count-psy" class="post-count"></span></a>
-        <a href="#" class="category-pill" data-cat="AI 최신뉴스">AI 최신뉴스 <span id="count-news" class="post-count"></span></a>
-        <a href="#" class="category-pill" data-cat="AI를 활용한 개발정보">AI를 활용한 개발정보 <span id="count-dev" class="post-count"></span></a>
-        <a href="#" class="category-pill" data-cat="OpenClaw">OpenClaw <span id="count-openclaw" class="post-count"></span></a>
-        <a href="#" class="category-pill" data-cat="수익화 팁">수익화 팁 <span id="count-money" class="post-count"></span></a>
+        <a href="#" class="category-pill active" onclick="filterCategory('all')">전체 <span id="count-all" class="post-count"></span></a>
+        <a href="#" class="category-pill" onclick="filterCategory('심리테스트')">심리테스트 <span id="count-psy" class="post-count"></span></a>
+        <a href="#" class="category-pill" onclick="filterCategory('AI 최신뉴스')">AI 최신뉴스 <span id="count-news" class="post-count"></span></a>
+        <a href="#" class="category-pill" onclick="filterCategory('AI를 활용한 개발정보')">AI를 활용한 개발정보 <span id="count-dev" class="post-count"></span></a>
+        <a href="#" class="category-pill" onclick="filterCategory('OpenClaw')">OpenClaw <span id="count-openclaw" class="post-count"></span></a>
+        <a href="#" class="category-pill" onclick="filterCategory('수익화 팁')">수익화 팁 <span id="count-money" class="post-count"></span></a>
     </div>
     <div id="posts-container" class="post-grid"></div>
 </div>
@@ -150,14 +143,15 @@
         });
     }
 
-    document.querySelectorAll('.category-pill').forEach(pill => {
-        pill.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
-            this.classList.add('active');
-            renderPosts(this.getAttribute('data-cat'));
+    function filterCategory(category) {
+        if (window.event) window.event.preventDefault();
+        document.querySelectorAll('.category-pill').forEach(pill => {
+            pill.classList.remove('active');
+            const cat = pill.getAttribute('onclick').match(/'([^']+)'/)[1];
+            if (cat === category) pill.classList.add('active');
         });
-    });
+        renderPosts(category);
+    }
 
     function updateCounts() {
         document.getElementById('count-all').innerText = posts.length;
