@@ -779,6 +779,16 @@
 
     renderPosts();
     updateCounts();
+
+    // 렌더링 보장을 위한 중복 실행
+    document.addEventListener('DOMContentLoaded', () => {
+        renderPosts();
+        updateCounts();
+    });
+    window.addEventListener('load', () => {
+        renderPosts();
+        updateCounts();
+    });
 </script>
 </body>
 </html>
