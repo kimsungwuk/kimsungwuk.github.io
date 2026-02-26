@@ -37,12 +37,12 @@
 <div class="container">
     <h2 class="section-title">Latest Updates</h2>
     <div id="category-list" class="categories">
-        <a href="#" class="category-pill active" onclick="filterCategory('all')">전체 <span id="count-all" class="post-count"></span></a>
-        <a href="#" class="category-pill" onclick="filterCategory('심리테스트')">심리테스트 <span id="count-psy" class="post-count"></span></a>
-        <a href="#" class="category-pill" onclick="filterCategory('AI 최신뉴스')">AI 최신뉴스 <span id="count-news" class="post-count"></span></a>
-        <a href="#" class="category-pill" onclick="filterCategory('AI를 활용한 개발정보')">AI를 활용한 개발정보 <span id="count-dev" class="post-count"></span></a>
-        <a href="#" class="category-pill" onclick="filterCategory('OpenClaw')">OpenClaw <span id="count-openclaw" class="post-count"></span></a>
-        <a href="#" class="category-pill" onclick="filterCategory('수익화 팁')">수익화 팁 <span id="count-money" class="post-count"></span></a>
+        <a href="#" class="category-pill active" onclick="filterCategory('all', event)">전체 <span id="count-all" class="post-count"></span></a>
+        <a href="#" class="category-pill" onclick="filterCategory('심리테스트', event)">심리테스트 <span id="count-psy" class="post-count"></span></a>
+        <a href="#" class="category-pill" onclick="filterCategory('AI 최신뉴스', event)">AI 최신뉴스 <span id="count-news" class="post-count"></span></a>
+        <a href="#" class="category-pill" onclick="filterCategory('AI를 활용한 개발정보', event)">AI를 활용한 개발정보 <span id="count-dev" class="post-count"></span></a>
+        <a href="#" class="category-pill" onclick="filterCategory('OpenClaw', event)">OpenClaw <span id="count-openclaw" class="post-count"></span></a>
+        <a href="#" class="category-pill" onclick="filterCategory('수익화 팁', event)">수익화 팁 <span id="count-money" class="post-count"></span></a>
     </div>
     <div id="posts-container" class="post-grid"></div>
 </div>
@@ -143,12 +143,13 @@
         });
     }
 
-    function filterCategory(category) {
-        if (window.event) window.event.preventDefault();
+    function filterCategory(category, e) {
+        if (e) e.preventDefault();
         document.querySelectorAll('.category-pill').forEach(pill => {
             pill.classList.remove('active');
-            const cat = pill.getAttribute('onclick').match(/'([^']+)'/)[1];
-            if (cat === category) pill.classList.add('active');
+            if (pill.innerText.includes(category) || (category === 'all' && pill.innerText.includes('전체'))) {
+                pill.classList.add('active');
+            }
         });
         renderPosts(category);
     }
@@ -162,8 +163,10 @@
         document.getElementById('count-money').innerText = posts.filter(p => p.category === '수익화 팁').length;
     }
 
-    renderPosts();
-    updateCounts();
+    window.onload = function() {
+        renderPosts();
+        updateCounts();
+    };
 </script>
 </body>
 </html>
