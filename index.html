@@ -246,6 +246,7 @@
     <h2 class="section-title">Latest Updates</h2>
     
     <div class="categories">
+        <a href="#" class="category-pill" onclick="filterCategory('심리테스트')">심리테스트 <span id="count-psy" class="post-count"></span></a>
         <a href="#" class="category-pill active" onclick="filterCategory('all')">전체 <span id="count-all" class="post-count"></span></a>
         <a href="#" class="category-pill" onclick="filterCategory('AI 최신뉴스')">AI 최신뉴스 <span id="count-news" class="post-count"></span></a>
         <a href="#" class="category-pill" onclick="filterCategory('AI를 활용한 개발정보')">AI를 활용한 개발정보 <span id="count-dev" class="post-count"></span></a>
@@ -271,6 +272,14 @@
 
 <script>
     const posts = [
+        {
+            title: "나의 성격 유형 분석 (12문항 정식 버전)",
+            date: "2026-02-26",
+            category: "심리테스트",
+            summary: "단순한 1초 선택이 아닌, 12가지 정교한 질문을 통해 당신의 진짜 성격 유형과 잘 맞는 궁합을 분석해 드립니다.",
+            image: "https://images.unsplash.com/photo-1502444330042-d1a1ddf9bb5b?q=80&w=2000&auto=format&fit=crop",
+            url: "posts/post-rich-test-mbti_rich.html"
+        },
         "title": "오우라 링 인공지능 챗봇 도입 개인화된 건강 관리의 정밀화",
                 "date": "2026-02-26",
                 "category": "AI 최신뉴스",
@@ -659,6 +668,7 @@
     function updateCounts() {
         const counts = {
             all: posts.length,
+            psy: posts.filter(p => p.category === '심리테스트').length,
             news: posts.filter(p => p.category === 'AI 최신뉴스').length,
             dev: posts.filter(p => p.category === 'AI를 활용한 개발정보').length,
             travel: posts.filter(p => p.category === '여행').length,
@@ -667,6 +677,8 @@
             psy: posts.filter(p => p.category === '심리테스트').length
         };
 
+        const psyEl = document.getElementById('count-psy');
+        if (psyEl) psyEl.innerText = counts.psy;
         document.getElementById('count-all').innerText = counts.all;
         document.getElementById('count-news').innerText = counts.news;
         document.getElementById('count-dev').innerText = counts.dev;
