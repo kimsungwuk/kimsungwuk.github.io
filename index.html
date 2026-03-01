@@ -134,13 +134,16 @@
         }
 
         .post-count {
-            font-size: 11px;
-            opacity: 1.0;
-            font-weight: 400;
+            font-size: 12px;
+            font-weight: 500;
+            background: rgba(0,0,0,0.05);
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 6px;
         }
-
         .category-pill.active .post-count {
-            opacity: 0.8;
+            background: rgba(255,255,255,0.2);
+            color: white;
         }
 
         .post-grid {
@@ -236,9 +239,7 @@
     <div class="container">
         <h2>Think Profit.</h2>
         <p>비즈니스 혁신과 수익 자동화의 기록</p>
-        <div class="visitor-counter" style="margin-top: 20px;">
-            <img src="https://hits.dwyl.com/kimsungwuk/chloekim.svg?style=flat-square&color=0066cc"/>
-        </div>
+        <div class="visitor-counter" style="margin-top: 20px;"><img src="https://hits.dwyl.com/kimsungwuk/chloekim.svg?style=flat-square&color=0066cc"></div>
     </div>
 </section>
 
@@ -984,15 +985,23 @@
         renderPosts(category);
     }
 
+    
     function updateCounts() {
-        if (document.getElementById('count-all')) document.getElementById('count-all').innerText = posts.length;
-        if (document.getElementById('count-psy')) document.getElementById('count-psy').innerText = posts.filter(p => p.category === '심리테스트').length;
-        if (document.getElementById('count-news')) document.getElementById('count-news').innerText = posts.filter(p => p.category === 'AI 최신뉴스').length;
-        if (document.getElementById('count-dev')) document.getElementById('count-dev').innerText = posts.filter(p => p.category === 'AI를 활용한 개발정보').length;
-        if (document.getElementById('count-openclaw')) document.getElementById('count-openclaw').innerText = posts.filter(p => p.category === 'OpenClaw').length;
-        if (document.getElementById('count-money')) document.getElementById('count-money').innerText = posts.filter(p => p.category === '수익화 팁').length;
-        if (document.getElementById('count-travel')) document.getElementById('count-travel').innerText = posts.filter(p => p.category === '여행').length;
+        const counts = {
+            'count-all': posts.length,
+            'count-psy': posts.filter(p => p.category === '심리테스트').length,
+            'count-news': posts.filter(p => p.category === 'AI 최신뉴스').length,
+            'count-dev': posts.filter(p => p.category === 'AI를 활용한 개발정보').length,
+            'count-travel': posts.filter(p => p.category === '여행').length,
+            'count-openclaw': posts.filter(p => p.category === 'OpenClaw').length,
+            'count-money': posts.filter(p => p.category === '수익화 팁').length
+        };
+        for (const [id, count] of Object.entries(counts)) {
+            const el = document.getElementById(id);
+            if (el) el.innerText = count;
+        }
     }
+
 
     renderPosts();
     updateCounts();
