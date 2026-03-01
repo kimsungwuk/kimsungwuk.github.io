@@ -73,7 +73,7 @@ def format_content(text):
     text = re.sub(url_pattern, replace_with_rich_preview, text)
     return text.replace('\n', '<br>')
 
-def build_post(title, content, category, summary, image_url, date=None):
+def build_post(title, content, category, summary, image_url, date=None, keywords=None):
     if not date:
         date = datetime.date.today().isoformat()
     
@@ -87,6 +87,11 @@ def build_post(title, content, category, summary, image_url, date=None):
     image_tag = f'<img src="{image_url}" alt="{title}" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">'
     
     visitor_badge = f'<img src="https://hits.dwyl.com/kimsungwuk/chloekim/{post_hash}.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;">'
+
+    # SEO Keywords 처리
+    if not keywords:
+        keywords = [category, "AI 뉴스", "수익 자동화", "kimsungwuk"]
+    keywords_str = ", ".join(keywords)
 
     with open(os.path.join(BASE_DIR, "templates/post_layout.html"), "r", encoding="utf-8") as f:
         template = f.read()
@@ -103,7 +108,8 @@ def build_post(title, content, category, summary, image_url, date=None):
                        .replace("{{content}}", format_content(content))\
                        .replace("{{image_tag}}", image_tag)\
                        .replace("{{visitor_badge}}", visitor_badge)\
-                       .replace("{{github_repo}}", CONFIG["github_repo"])
+                       .replace("{{github_repo}}", CONFIG["github_repo"])\
+                       .replace("{{keywords}}", keywords_str)
 
     output_path = os.path.join(BASE_DIR, f"posts/{filename}")
     with open(output_path, "w", encoding="utf-8") as f:
@@ -130,7 +136,15 @@ def rebuild_all():
 
     processed_posts = []
     for post in posts_data:
-        p_info = build_post(post["title"], post["content"], post["category"], post["summary"], post.get("image_url", ""), post.get("date"))
+        p_info = build_post(
+            post["title"], 
+            post["content"], 
+            post["category"], 
+            post["summary"], 
+            post.get("image_url", ""), 
+            post.get("date"),
+            post.get("keywords")
+        )
         processed_posts.append(p_info)
     
     index_path = os.path.join(BASE_DIR, "index.html")
