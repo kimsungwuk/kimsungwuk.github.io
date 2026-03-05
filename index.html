@@ -19,8 +19,22 @@
         .categories { display: flex; gap: 12px; margin-bottom: 30px; overflow-x: auto; padding-bottom: 10px; }
         .category-pill { background: white; border: 1px solid #d2d2d7; padding: 8px 16px; border-radius: 20px; font-size: 14px; cursor: pointer; text-decoration: none; color: inherit; display: flex; align-items: center; white-space: nowrap; }
         .category-pill.active { background: #1d1d1f; color: white; border-color: #1d1d1f; }
-        .post-count { display: inline-block; font-size: 11px; background: #eee; padding: 2px 6px; border-radius: 10px; color: #666; margin-left: 8px; font-weight: 600; }
-        .category-pill.active .post-count { background: rgba(255,255,255,0.2); color: white; }
+        .post-count {
+            display: inline-block !important;
+            font-size: 11px !important;
+            background-color: #f0f0f0 !important;
+            padding: 2px 8px !important;
+            border-radius: 12px !important;
+            color: #555 !important;
+            margin-left: 8px !important;
+            font-weight: 600 !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        .category-pill.active .post-count {
+            background-color: rgba(255, 255, 255, 0.3) !important;
+            color: #ffffff !important;
+        }
         .post-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-bottom: 60px; }
         .post-card { background: #fff; border-radius: 18px; overflow: hidden; text-decoration: none; color: inherit; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: 0.3s; display: flex; flex-direction: column; }
         .post-card:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
