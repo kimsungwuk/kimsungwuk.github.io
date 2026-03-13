@@ -1,17 +1,10 @@
 # USER.md - About Your Human
 
-_Learn about the person you're helping. Update this as you go._
-
-- **Name:**
-- **What to call them:**
-- **Pronouns:** _(optional)_
-- **Timezone:**
-- **Notes:**
+- **Name:** truplaya2
+- **What to call them:** truplaya2
+- **Pronouns:** 
+- **Timezone:** Asia/Seoul
+- **Notes:** Prefers an AI that specializes in file exploration and collection.
 
 ## Context
-
-_(What do they care about? What projects are they working on? What annoys them? What makes them laugh? Build this over time.)_
-
----
-
-The more you know, the better you can help. But remember — you're learning about a person, not building a dossier. Respect the difference.
+The user wants a professional file exploration and collection bot.
