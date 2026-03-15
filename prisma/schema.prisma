@@ -1,0 +1,124 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  MEMBER
+}
+
+enum ActivityType {
+  CALL
+  MEETING
+  EMAIL
+  NOTE
+}
+
+enum DealStatus {
+  LEAD
+  MEETING
+  PROPOSAL
+  CONTRACT
+  LOST
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  password      String?
+  image         String?
+  role          Role      @default(MEMBER)
+  teamId        String?
+  team          Team?     @relation(fields: [teamId], references: [id])
+  activities    Activity[]
+  deals         Deal[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Team {
+  id        String   @id @default(cuid())
+  name      String
+  users     User[]
+  companies Company[]
+  createdAt DateTime @default(now())
+}
+
+model Company {
+  id          String   @id @default(cuid())
+  name        String
+  industry    String?
+  website     String?
+  address     String?
+  latitude    Float?
+  longitude   Float?
+  teamId      String?
+  team        Team?    @relation(fields: [teamId], references: [id])
+  contacts    Contact[]
+  deals       Deal[]
+  activities  Activity[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Contact {
+  id        String   @id @default(cuid())
+  name      String
+  title     String?
+  email     String?
+  phone     String?
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id])
+  deals     Deal[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Deal {
+  id          String     @id @default(cuid())
+  title       String
+  value       Float      @default(0)
+  status      DealStatus @default(LEAD)
+  companyId   String
+  company     Company    @relation(fields: [companyId], references: [id])
+  contactId   String?
+  contact     Contact?   @relation(fields: [contactId], references: [id])
+  ownerId     String
+  owner       User       @relation(fields: [ownerId], references: [id])
+  activities  Activity[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Activity {
+  id          String       @id @default(cuid())
+  type        ActivityType @default(NOTE)
+  content     String       @db.Text
+  userId      String
+  user        User         @relation(fields: [userId], references: [id])
+  companyId   String?
+  company     Company?     @relation(fields: [companyId], references: [id])
+  dealId      String?
+  deal        Deal?        @relation(fields: [dealId], references: [id])
+  attachments Attachment[]
+  createdAt   DateTime     @default(now())
+}
+
+model Attachment {
+  id         String   @id @default(cuid())
+  url        String
+  filename   String
+  activityId String
+  activity   Activity @relation(fields: [activityId], references: [id])
+  createdAt  DateTime @default(now())
+}

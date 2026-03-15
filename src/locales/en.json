@@ -1,0 +1,108 @@
+{
+  "common": {
+    "dashboard": "Dashboard",
+    "pipeline": "Pipeline",
+    "companies": "Companies",
+    "activities": "Activities",
+    "mapExplorer": "Map Explorer",
+    "ocrScan": "OCR Scan",
+    "settings": "Settings",
+    "logout": "Logout",
+    "welcome": "Welcome back",
+    "overview": "Here's an overview of your sales performance.",
+    "save": "Save Changes",
+    "reset": "Reset",
+    "processing": "Processing...",
+    "noImage": "No image selected",
+    "upload": "Upload Image"
+  },
+  "dashboard": {
+    "totalCompanies": "Total Companies",
+    "activeDeals": "Active Deals",
+    "pipelineValue": "Pipeline Value",
+    "conversionRate": "Conversion Rate",
+    "recentActivity": "Recent Activity",
+    "recentCompanies": "Recent Companies",
+    "trendLastMonth": "from last month",
+    "activityNotice": "Activity chart is active.",
+    "companyNotice": "Company tracking is active.",
+    "demoData": "Using demo data"
+  },
+  "pipeline": {
+    "title": "Sales Pipeline",
+    "description": "Manage your deals across different stages of the sales process.",
+    "stages": {
+      "lead": "Lead",
+      "meeting": "Meeting",
+      "proposal": "Proposal",
+      "contract": "Contract"
+    },
+    "noCompany": "No Company"
+  },
+  "companies": {
+    "title": "Companies",
+    "description": "A list of your customer companies and their details.",
+    "table": {
+      "company": "Company",
+      "industry": "Industry",
+      "website": "Website",
+      "location": "Location",
+      "noData": "No companies found in database."
+    }
+  },
+  "activities": {
+    "title": "Activities Log",
+    "description": "Track recent sales activities and communication records."
+  },
+  "map": {
+    "title": "Customer Explorer",
+    "description": "Visualize your customer locations and plan your visits.",
+    "interactiveTitle": "Interactive GIS Map View",
+    "apiNotice": "(Google Maps API integration ready)",
+    "customerList": "Customer List",
+    "viewDetails": "View Company Details"
+  },
+  "ocr": {
+    "title": "Business Card Scan",
+    "description": "Instantly convert paper business cards into digital contacts using AI.",
+    "uploadTitle": "Business Card Upload",
+    "uploadDesc": "Upload or take a photo of a business card to extract contact info.",
+    "resultTitle": "Extracted Information",
+    "resultDesc": "Verify and edit the information extracted from the card.",
+    "fields": {
+      "name": "Name",
+      "title": "Job Title",
+      "company": "Company",
+      "email": "Email",
+      "phone": "Phone"
+    },
+    "addToContacts": "Add to Contacts"
+  },
+  "settings": {
+    "title": "Settings",
+    "description": "Manage your account settings and preferences.",
+    "tabs": {
+      "profile": "Profile",
+      "organization": "Organization",
+      "api": "API Keys"
+    },
+    "profile": {
+      "title": "Profile Information",
+      "description": "Update your personal information and email address.",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address"
+    },
+    "organization": {
+      "title": "Organization Details",
+      "description": "Manage your team and company settings.",
+      "name": "Organization Name"
+    },
+    "api": {
+      "title": "API Configuration",
+      "description": "Configure external service integrations.",
+      "googleMaps": "Google Maps API Key",
+      "update": "Update Keys"
+    }
+  }
+}
