@@ -33,9 +33,24 @@ def get_link_metadata(url):
         return {"title": "Google Play Store", "image": ""}
 
 def format_content(text):
-    # 1. 명령어 박스 변환
+    # 1. Headers (###, ##, #)
+    text = re.sub(r'^### (.+)$', r'<h3>\1</h3>', text, flags=re.MULTILINE)
+    text = re.sub(r'^## (.+)$', r'<h2>\1</h2>', text, flags=re.MULTILINE)
+    text = re.sub(r'^# (.+)$', r'<h1>\1</h1>', text, flags=re.MULTILINE)
+
+    # 2. Bold (**text**)
+    text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
+
+    # 3. Lists (- item)
+    text = re.sub(r'^- (.+)$', r'<li>\1</li>', text, flags=re.MULTILINE)
+    text = re.sub(r'((?:<li>.+</li>\n?)+)', r'<ul>\1</ul>', text)
+
+    # 4. URLs to clickable links (excluding images or existing tags)
+    url_pattern = r'(?<!href=")(?<!src=")(https?://[^\s\n<]+)'
+    text = re.sub(url_pattern, r'<a href="\1" target="_blank">\1</a>', text)
+
+    # 5. 명령어 박스 변환 (Existing logic)
     cmd_pattern = r'(?:명령어|명령어 예시|상태 확인 명령어):\s*(.+)'
-    
     def replace_with_code_box(match):
         code = match.group(1).strip().replace('\"', '')
         block_id = f"code-{hashlib.md5(code.encode()).hexdigest()[:6]}"
@@ -47,31 +62,18 @@ def format_content(text):
             </button>
         </div>
         """
-
-    # 2. 구글 플레이 스토어 링크 변환
-    url_pattern = r'(https?://play\.google\.com/store/apps/details\?id=[^\s\n<]+)'
-    
-    def replace_with_rich_preview(match):
-        url = match.group(1)
-        meta = get_link_metadata(url)
-        return f"""
-        <div class="rich-link-card">
-            <a href="{url}" target="_blank">
-                <div class="card-image" style="background-image: url('{meta['image']}');"></div>
-                <div class="card-body">
-                    <div class="card-info">
-                        <div class="card-title">{meta['title']}</div>
-                        <div class="card-subtitle">Google Play Store</div>
-                    </div>
-                    <div class="btn-get">받기</div>
-                </div>
-            </a>
-        </div>
-        """
-
     text = re.sub(cmd_pattern, replace_with_code_box, text)
-    text = re.sub(url_pattern, replace_with_rich_preview, text)
-    return text.replace('\n', '<br>')
+
+    # 6. Newlines to <br> for non-HTML blocks
+    lines = text.split('\n')
+    formatted_lines = []
+    for line in lines:
+        if not re.match(r'<(h[1-3]|ul|li|div|p)', line.strip()):
+            formatted_lines.append(line + '<br>')
+        else:
+            formatted_lines.append(line)
+    
+    return '\n'.join(formatted_lines)
 
 def build_post(title, content, category, summary, image_url, date=None, keywords=None):
     if not date:
