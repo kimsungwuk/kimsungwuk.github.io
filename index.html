@@ -282,6 +282,10 @@
     <div id="posts-container" class="post-grid">
         <!-- Posts will be injected here -->
     </div>
+
+    <div id="load-more-container" style="text-align: center; margin-bottom: 80px; display: none;">
+        <button id="load-more-btn" style="background: var(--text-primary); color: white; border: none; padding: 12px 40px; border-radius: 25px; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.2s;">더 보기</button>
+    </div>
 </div>
 
 <footer>
@@ -1863,20 +1867,35 @@
         }
 ];
 
-    function renderPosts(filter = 'all') {
+    let currentFilter = 'all';
+    let currentPage = 1;
+    const postsPerPage = 12;
+
+    function renderPosts(filter = 'all', page = 1) {
         const container = document.getElementById('posts-container');
-        container.innerHTML = '';
+        const loadMoreContainer = document.getElementById('load-more-container');
+        
+        currentFilter = filter;
+        currentPage = page;
+
+        if (page === 1) {
+            container.innerHTML = '';
+        }
         
         const filteredPosts = filter === 'all' 
             ? posts 
             : posts.filter(post => post.category === filter);
 
-        filteredPosts.forEach(post => {
+        const start = (page - 1) * postsPerPage;
+        const end = page * postsPerPage;
+        const pagePosts = filteredPosts.slice(start, end);
+
+        pagePosts.forEach(post => {
             const card = document.createElement('a');
             card.className = 'post-card';
             card.href = post.url;
             card.innerHTML = `
-                <img src="${post.image}" alt="${post.title}">
+                <img src="${post.image}" alt="${post.title}" loading="lazy">
                 <div class="post-card-content">
                     <small>${post.category} · ${post.date}</small>
                     <h3>${post.title}</h3>
@@ -1886,9 +1905,20 @@
             container.appendChild(card);
         });
 
+        // Show/hide load more button
+        if (end < filteredPosts.length) {
+            loadMoreContainer.style.display = 'block';
+        } else {
+            loadMoreContainer.style.display = 'none';
+        }
+
         // Update counts
         updateCounts();
     }
+
+    document.getElementById('load-more-btn').addEventListener('click', () => {
+        renderPosts(currentFilter, currentPage + 1);
+    });
 
     function updateCounts() {
         const counts = {
@@ -1902,7 +1932,7 @@
             const el = document.getElementById(id);
             if (el) {
                 el.innerText = count;
-                el.style.display = 'inline-block'; // 강제 표시
+                el.style.display = 'inline-block';
             }
         }
     }
@@ -1911,7 +1941,7 @@
         event.preventDefault();
         document.querySelectorAll('.category-pill').forEach(pill => pill.classList.remove('active'));
         event.target.closest('.category-pill').classList.add('active');
-        renderPosts(category);
+        renderPosts(category, 1);
     }
 
     renderPosts();
