@@ -59,7 +59,8 @@
         .visitor-badge { margin-bottom: 20px; }
         img { max-width: 100%; height: auto; display: block; }
         
-        .ad-container { margin: 40px 0; text-align: center; overflow: hidden; }
+        .ad-container { margin: 40px 0; text-align: center; overflow: hidden; display: block; }
+        .ad-container:has(ins[data-ad-status="unfilled"]) { display: none !important; }
 
         a { color: var(--accent-color); text-decoration: none; }
         a:hover { text-decoration: underline; }

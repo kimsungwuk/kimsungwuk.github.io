@@ -212,6 +212,11 @@
             margin: 40px 0;
             text-align: center;
             overflow: hidden;
+            display: block;
+        }
+
+        .ad-container:has(ins[data-ad-status="unfilled"]) {
+            display: none !important;
         }
 
         footer {
