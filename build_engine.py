@@ -33,17 +33,21 @@ def get_link_metadata(url):
         return {"title": "Google Play Store", "image": ""}
 
 def format_content(text):
-    # 1. Headers (###, ##, #)
-    text = re.sub(r'^### (.+)$', r'<h3>\1</h3>', text, flags=re.MULTILINE)
-    text = re.sub(r'^## (.+)$', r'<h2>\1</h2>', text, flags=re.MULTILINE)
-    text = re.sub(r'^# (.+)$', r'<h1>\1</h1>', text, flags=re.MULTILINE)
+    # 0. Handle literal \n if they exist (common when injecting JSON)
+    text = text.replace('\\n', '\n')
 
-    # 2. Bold (**text**)
-    text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
+    # 1. Headers (###, ##, #) - ensure they don't capture across lines
+    text = re.sub(r'^### (.*)$', r'<h3>\1</h3>', text, flags=re.MULTILINE)
+    text = re.sub(r'^## (.*)$', r'<h2>\1</h2>', text, flags=re.MULTILINE)
+    text = re.sub(r'^# (.*)$', r'<h1>\1</h1>', text, flags=re.MULTILINE)
+
+    # 2. Bold (**text**) - non-greedy
+    text = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', text)
 
     # 3. Lists (- item)
-    text = re.sub(r'^- (.+)$', r'<li>\1</li>', text, flags=re.MULTILINE)
-    text = re.sub(r'((?:<li>.+</li>\n?)+)', r'<ul>\1</ul>', text)
+    text = re.sub(r'^- (.*)$', r'<li>\1</li>', text, flags=re.MULTILINE)
+    # Wrap adjacent <li> tags in <ul>
+    text = re.sub(r'((?:<li>.*?</li>\n?)+)', r'<ul>\1</ul>', text, flags=re.DOTALL)
 
     # 4. URLs to clickable links (excluding images or existing tags)
     url_pattern = r'(?<!href=")(?<!src=")(https?://[^\s\n<]+)'
@@ -68,7 +72,10 @@ def format_content(text):
     lines = text.split('\n')
     formatted_lines = []
     for line in lines:
-        if not re.match(r'<(h[1-3]|ul|li|div|p)', line.strip()):
+        stripped = line.strip()
+        if not stripped:
+            formatted_lines.append('<br>')
+        elif not re.match(r'<(h[1-3]|ul|li|div|p|a)', stripped):
             formatted_lines.append(line + '<br>')
         else:
             formatted_lines.append(line)
