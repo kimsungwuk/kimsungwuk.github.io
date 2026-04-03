@@ -155,6 +155,13 @@ def create_daily_news_posts():
     newly_added = 0
     for item in news_data_list:
         title = item["title"]
+        img_url = item.get("image_url")
+        
+        # ABSOLUTE REQUIREMENT: Image must exist and be valid
+        if not img_url or not str(img_url).startswith("http"):
+            print(f"⚠️ Skipping post due to MISSING image: {title}")
+            continue
+            
         keywords = item.get("keywords", [item["category"], "AI 뉴스", "수익 자동화"])
         
         # 중복 제거 (제목과 날짜가 같으면 기존 것 제거)
