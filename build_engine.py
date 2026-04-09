@@ -74,8 +74,11 @@ def format_content(text):
     for line in lines:
         stripped = line.strip()
         if not stripped:
+            # HTML 블록 내의 빈 줄은 무시하거나 최소화
+            if any(tag in text for tag in ['<div', '<table', '<h2']):
+                continue 
             formatted_lines.append('<br>')
-        elif not re.match(r'<(h[1-3]|ul|li|div|p|a)', stripped):
+        elif not re.match(r'<(h[1-3]|ul|li|div|p|a|table|thead|tbody|tr|td|script)', stripped):
             formatted_lines.append(line + '<br>')
         else:
             formatted_lines.append(line)
