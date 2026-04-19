@@ -1,5 +1,46 @@
 [
     {
+        "title": "기업용 AI 신뢰성 확보를 위한 투자 열풍",
+        "date": "2026-04-19",
+        "category": "AI 최신뉴스",
+        "summary": "액션AI가 기업용 AI 신뢰성 강화 기술로 1,000만 달러 투자를 유치하는 등 실질적 가치 창출에 집중하는 추세입니다.",
+        "image_url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+        "content": "<div style=\"font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; font-size: 16px; box-sizing: border-box;\"><h2 style=\"font-size: 22px; color: #0066cc; border-bottom: 2px solid #eaeaea; padding-bottom: 10px; margin-top: 30px;\">기업용 AI 신뢰성 확보를 위한 기술 투자 확대</h2><p style=\"margin-bottom: 15px;\">최근 액션AI가 미션 크리티컬 워크플로우를 위한 기업용 AI 신뢰성 강화 기술로 1,000만 달러 규모의 시드 투자를 유치했다는 소식이 들려왔어요. 이는 많은 기업이 AI 도입 시 겪는 신뢰도 문제를 해결하려는 시장의 요구가 반영된 결과라고 볼 수 있어요.</p><p style=\"margin-bottom: 15px;\">엔비디아의 최신 리포트에서도 AI가 전 산업 분야에서 수익 증대와 비용 절감을 이끌어내고 있다는 점을 명확히 하고 있네요. 생산성 향상이 실제 지표로 증명되면서 기업들의 AI 투자는 더욱 과감해질 전망이에요. 아래 표는 주요 산업별 AI 도입 효과를 간단히 정리한 자료예요.</p><table style=\"width: 100%; border-collapse: collapse; margin-bottom: 15px;\"><thead><tr style=\"background-color: #0066cc; color: white;\"><th style=\"border: 1px solid #ddd; padding: 12px; text-align: left;\">산업 분야</th><th style=\"border: 1px solid #ddd; padding: 12px; text-align: left;\">주요 성과</th></tr></thead><tbody><tr><td style=\"border: 1px solid #ddd; padding: 12px;\">제조업</td><td style=\"border: 1px solid #ddd; padding: 12px;\">공정 자동화 및 불량률 감소</td></tr><tr style=\"background-color: #f9f9f9;\"><td style=\"border: 1px solid #ddd; padding: 12px;\">금융업</td><td style=\"border: 1px solid #ddd; padding: 12px;\">리스크 분석 및 이상 거래 탐지</td></tr><tr><td style=\"border: 1px solid #ddd; padding: 12px;\">의료업</td><td style=\"border: 1px solid #ddd; padding: 12px;\">신약 개발 가속화 및 정밀 진단</td></tr></tbody></table></div>",
+        "keywords": [
+            "기업용AI",
+            "액션AI",
+            "엔비디아",
+            "AI수익성"
+        ]
+    },
+    {
+        "title": "스탠포드 HAI 2026 AI 인덱스 보고서 분석",
+        "date": "2026-04-19",
+        "category": "AI 최신뉴스",
+        "summary": "스탠포드 HAI의 최신 보고서에 따르면 AI 역량 발전이 가속화되고 있으며 산업계가 모델 생산의 90%를 주도하고 있습니다.",
+        "image_url": "https://images.unsplash.com/photo-1507413245164-6160d8298b31",
+        "content": "<div style=\"font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; font-size: 16px; box-sizing: border-box;\"><h2 style=\"font-size: 22px; color: #0066cc; border-bottom: 2px solid #eaeaea; padding-bottom: 10px; margin-top: 30px;\">스탠포드 HAI 2026 AI 인덱스 보고서 발표</h2><p style=\"margin-bottom: 15px;\">스탠포드 인간 중심 AI 연구소에서 발행한 2026 AI 인덱스 보고서에 따르면 AI 역량의 발전은 결코 정체되지 않고 오히려 가속화되고 있다고 해요. 2025년 한 해 동안 생산된 주요 프론티어 모델의 90% 이상이 산업계에서 배출되었다는 통계는 기술 혁신의 중심이 대학에서 기업으로 완전히 이동했음을 잘 보여주네요.</p><p style=\"margin-bottom: 15px;\">보고서는 또한 AI가 더 많은 일반 대중에게 도달하고 있다는 점을 강조했어요. <span style=\"background-color: #fffde7; padding: 2px 4px;\">기술의 대중화가 빨라지면서 사회적 영향력도 그만큼 커지고 있는 셈이죠.</span> 이러한 급격한 변화 속에서 규제와 윤리적 가이드라인에 대한 논의도 더욱 치열해질 것으로 예상되네요.</p></div>",
+        "keywords": [
+            "스탠포드HAI",
+            "AI인덱스",
+            "AI트렌드"
+        ]
+    },
+    {
+        "title": "메타 뮤즈 스파크 공개 및 컴퓨팅 인프라 대규모 투자",
+        "date": "2026-04-19",
+        "category": "AI 최신뉴스",
+        "summary": "메타가 차세대 멀티모달 추론 모델인 '뮤즈 스파크'를 발표하고 코어위브와 210억 달러 규모의 컴퓨팅 계약을 체결했습니다.",
+        "image_url": "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+        "content": "<div style=\"font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; font-size: 16px; box-sizing: border-box;\"><div style=\"background-color: #f5f5f5; padding: 15px; margin-bottom: 20px; border-radius: 8px; font-style: italic;\">본 포스팅은 2026년 4월 19일 기준 인공지능 산업의 핵심적인 변화와 주요 뉴스를 요약하여 제공합니다.</div><p style=\"margin-bottom: 15px;\">메타가 혁신적인 멀티모달 추론 모델인 뮤즈 스파크를 정식으로 발표했네요. 이 모델은 텍스트와 이미지 그리고 비디오 데이터를 동시에 처리하며 인간에 가까운 논리적 추론을 수행할 수 있는 능력을 갖췄다고 해요. 특히 시각적 정보를 바탕으로 복잡한 인과관계를 설명하는 기능이 이전 모델보다 비약적으로 향상되었다는 점이 정말 인상적이에요.</p><p style=\"margin-bottom: 15px;\">이번 발표와 더불어 메타는 코어위브와 210억 달러 규모의 AI 연산 자원 계약을 체결하며 인프라 확보에도 박차를 가하고 있어요. <span style=\"background-color: #fffde7; padding: 2px 4px;\">확보된 컴퓨팅 자원은 차세대 AI 모델 개발의 밑거름이 될 것으로 보이네요.</span> 제 생각엔 메타가 하드웨어와 소프트웨어 양면에서 주도권을 잡으려는 의지가 확실해 보여요.</p></div>",
+        "keywords": [
+            "메타",
+            "뮤즈스파크",
+            "AI인프라",
+            "코어위브"
+        ]
+    },
+    {
         "title": "소프트뱅크의 '피지컬 AI' 전문 기업 설립과 로봇 산업의 지각변동",
         "date": "2026-04-15",
         "category": "AI 최신뉴스",
