@@ -1,5 +1,47 @@
 [
     {
+        "title": "구글 포토 AI 기반 고급 인물 사진 편집 도구 추가",
+        "date": "2026-04-21",
+        "category": "AI 최신뉴스",
+        "summary": "구글 포토가 복잡한 수동 작업 없이도 인물 사진을 완벽하게 보정할 수 있는 지능형 도구를 새롭게 선보였습니다.",
+        "image_url": "https://images.unsplash.com/photo-1542038784456-1ea8e935640e",
+        "content": "<div style=\"font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; font-size: 16px; box-sizing: border-box;\"><div style=\"background-color: #f5f5f5; padding: 15px; border-left: 5px solid #0066cc; font-style: italic; margin-bottom: 15px;\">전문적인 리터칭 기술이 스마트폰 앱 속으로 들어와 누구나 손쉽게 고품질 사진을 만들 수 있게 되었습니다.</div><p>새롭게 추가된 도구들은 피부 결 정돈부터 눈매 교정까지 AI가 알아서 처리해줍니다. 제가 직접 사용해보니 정말 자연스러운 결과물이 나오더군요. 복잡한 후보정 과정을 단 몇 초로 단축시킨 기술력이 놀라워요.</p><h2 style=\"font-size: 22px; color: #1a73e8; border-bottom: 2px solid #eaeaea; padding-bottom: 5px; margin-top: 20px; margin-bottom: 10px;\">누구나 전문가가 되는 시대</h2><p>이제 고가의 편집 소프트웨어나 전문 지식이 없어도 <span style=\"background-color: #fffde7; padding: 2px 4px;\">최상의 결과물</span>을 얻을 수 있습니다. 이는 창작의 문턱을 낮추고 소중한 기억을 더 아름답게 기록하는 데 도움을 줄 거예요.</p><p>스마트폰 카메라의 하드웨어 한계를 AI 소프트웨어가 보완하는 흐름은 앞으로도 계속될 전망입니다. 우리의 일상이 더욱 화사해질 날들이 기대되네요.</p></div>",
+        "keywords": [
+            "구글 포토",
+            "AI 편집",
+            "사진 보정",
+            "모바일 기술"
+        ]
+    },
+    {
+        "title": "AI 생성 문구의 특정 패턴 식별 연구 결과 발표",
+        "date": "2026-04-21",
+        "category": "AI 최신뉴스",
+        "summary": "인공지능이 작성한 텍스트에서 공통적으로 발견되는 특정 문장 구조와 패턴이 연구를 통해 밝혀졌습니다.",
+        "image_url": "https://images.unsplash.com/photo-1555066931-4365d14bab8c",
+        "content": "<div style=\"font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; font-size: 16px; box-sizing: border-box;\"><div style=\"background-color: #f5f5f5; padding: 15px; border-left: 5px solid #0066cc; font-style: italic; margin-bottom: 15px;\">AI가 생성한 콘텐츠를 구별해낼 수 있는 실마리가 데이터 분석을 통해 확인되었습니다.</div><p>최근 연구에 따르면 AI가 작성한 글에서 특정 접속사와 문장 구조가 유난히 높은 빈도로 관찰된다고 해요. 예를 들어 대조를 나타내는 문장이나 정형화된 요약 문구들이 대표적이죠. 이러한 발견은 디지털 콘텐츠의 진위 여부를 파악하는 데 중요한 지표가 될 것으로 보여요.</p><h2 style=\"font-size: 22px; color: #1a73e8; border-bottom: 2px solid #eaeaea; padding-bottom: 5px; margin-top: 20px; margin-bottom: 10px;\">기술적 지문으로서의 패턴</h2><p>이러한 패턴은 일종의 <span style=\"background-color: #fffde7; padding: 2px 4px;\">디지털 워터마크</span>와 같은 역할을 합니다. 모델의 학습 데이터가 가진 통계적 성향이 반영된 결과라고 볼 수 있죠. 이를 통해 우리는 더 투명한 정보 생태계를 구축할 수 있는 발판을 마련하게 되었습니다.</p><p>전문가들은 이러한 패턴 역시 기술 발전에 따라 진화하겠지만 인간 특유의 비선형적인 사고를 완벽히 모사하기까지는 시간이 더 필요할 것으로 내다보고 있습니다.</p></div>",
+        "keywords": [
+            "AI 글쓰기",
+            "텍스트 패턴",
+            "생성형 AI",
+            "콘텐츠 분석"
+        ]
+    },
+    {
+        "title": "구글 제미나이 크롬 브라우저 통합 및 한국 공식 출시",
+        "date": "2026-04-21",
+        "category": "AI 최신뉴스",
+        "summary": "구글의 생성형 AI 제미나이가 크롬 브라우저에 직접 통합되어 한국을 포함한 7개국에 공식 출시되었습니다.",
+        "image_url": "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+        "content": "<div style=\"font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; font-size: 16px; box-sizing: border-box;\"><div style=\"background-color: #f5f5f5; padding: 15px; border-left: 5px solid #0066cc; font-style: italic; margin-bottom: 15px;\">구글이 자사의 AI 역량을 브라우저에 직접 이식하며 사용성을 비약적으로 높였습니다.</div><p>구글이 제미나이를 크롬 브라우저에 통합하여 한국을 포함한 아시아 7개국에 선보였습니다. 이제 별도의 탭 이동 없이 주소창이나 메뉴를 통해 즉각적인 AI 도움을 받을 수 있게 되었네요. 이는 우리가 웹을 탐색하는 방식에 근본적인 변화를 가져올 것으로 보여요.</p><h2 style=\"font-size: 22px; color: #1a73e8; border-bottom: 2px solid #eaeaea; padding-bottom: 5px; margin-top: 20px; margin-bottom: 10px;\">브라우저 내 통합의 가치</h2><p>단순한 웹 서비스를 넘어 브라우저 엔진 차원에서의 통합은 응답 속도와 맥락 이해도를 높여줍니다. <span style=\"background-color: #fffde7; padding: 2px 4px;\">작업 흐름을 끊지 않는 매끄러운 경험</span>이 이번 업데이트의 핵심이라고 할 수 있어요. 한국 사용자들에게는 언어 장벽 없이 최신 기술을 접할 기회가 열린 셈이죠.</p><p>앞으로도 구글은 크롬의 방대한 데이터를 바탕으로 개인화된 AI 경험을 더욱 강화할 것으로 예상됩니다. 일상적인 검색과 정보 수집이 얼마나 더 똑똑해질지 기대되네요.</p></div>",
+        "keywords": [
+            "구글 제미나이",
+            "크롬 브라우저",
+            "AI 통합",
+            "한국 출시"
+        ]
+    },
+    {
         "title": "뉴럴링크와 AI 결합: 사지 마비 환자를 위한 정교한 제어 성공",
         "date": "2026-04-20",
         "category": "AI 최신뉴스",
