@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceX의 자체 GPU 개발 선언과 반도체 공급망의 지각변동 - Antigravity Lab</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="상장을 앞둔 SpaceX가 칩 수급 안정화를 위해 자체 GPU 개발에 착수했다는 소식이 전해지며 업계의 이목이 집중되고 있습니다.">
+    <meta name="keywords" content="SpaceX, 자체GPU, 반도체전쟁, 일론머스크, 기술자립">
+    <meta name="author" content="kimsungwuk">
+    <link rel="canonical" href="https://kimsungwuk.github.io/posts/post-2026-04-25-82a6a49d.html">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5003342395815276" crossorigin="anonymous"></script>
+
+    <!-- Open Graph (SNS Sharing) -->
+    <meta property="og:title" content="SpaceX의 자체 GPU 개발 선언과 반도체 공급망의 지각변동">
+    <meta property="og:description" content="상장을 앞둔 SpaceX가 칩 수급 안정화를 위해 자체 GPU 개발에 착수했다는 소식이 전해지며 업계의 이목이 집중되고 있습니다.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1541185933-ef5d8ed016c2">
+    <meta property="og:url" content="https://kimsungwuk.github.io/posts/post-2026-04-25-82a6a49d.html">
+    <meta property="og:type" content="article">
+    
+    <style>
+        :root { --bg-color: #ffffff; --text-primary: #1d1d1f; --text-secondary: #86868b; --accent-color: #0066cc; --card-bg: #f5f5f7; }
+        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 0; line-height: 1.6; }
+        
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding: 16px 0;
+            text-align: center;
+        }
+        header h1 { font-size: 14px; font-weight: 700; margin: 0; letter-spacing: 0.15em; text-transform: uppercase; color: #1d1d1f; }
+        header .container { padding: 0 20px; } /* Header container padding reset to match home */
+
+        .container { max-width: 680px; margin: 0 auto; padding: 40px 20px; }
+        .meta { font-size: 14px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px; }
+        h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 40px 0; line-height: 1.1; }
+        .content { font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }
+        
+        .code-container { background: #f5f5f7; border-radius: 16px; padding: 20px 24px; margin: 20px 0; position: relative; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(0,0,0,0.05); }
+        .code-text { font-family: "SF Mono", monospace; font-size: 16px; color: #444; margin: 0; }
+        .copy-btn { background: none; border: none; cursor: pointer; padding: 8px; color: var(--text-secondary); }
+
+        .rich-link-card { background: var(--card-bg); border-radius: 22px; overflow: hidden; margin: 40px 0; transition: all 0.4s; border: 1px solid rgba(0,0,0,0.05); }
+        .rich-link-card:hover { transform: scale(1.01); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .card-image { width: 100%; height: 320px; background-size: cover; background-position: center; }
+        .card-body { padding: 24px 30px; display: flex; justify-content: space-between; align-items: center; background: #ffffff; }
+        .btn-get { background: #0071e3; color: #ffffff; font-size: 14px; font-weight: 700; padding: 8px 18px; border-radius: 20px; text-transform: uppercase; }
+
+        .back-link { display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; }
+        .comment-section { margin-top: 80px; padding-top: 40px; border-top: 1px solid #e5e5e5; }
+        .visitor-badge { margin-bottom: 20px; }
+        img { max-width: 100%; height: auto; display: block; }
+        
+        .ad-container { margin: 40px 0; text-align: center; overflow: hidden; display: block; }
+        .ad-container:has(ins[data-ad-status="unfilled"]) { display: none !important; }
+
+        a { color: var(--accent-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        @media (max-width: 734px) { h1 { font-size: 34px; } .card-image { height: 200px; } }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>Antigravity Lab</h1>
+    </div>
+</header>
+<div class="container">
+    <div class="meta">AI 최신뉴스 · 2026-04-25</div>
+    <h1>SpaceX의 자체 GPU 개발 선언과 반도체 공급망의 지각변동</h1>
+    <div class="visitor-badge"><img src="https://hits.dwyl.com/kimsungwuk/chloekim/82a6a49d.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;"></div>
+    <img src="https://images.unsplash.com/photo-1541185933-ef5d8ed016c2" alt="SpaceX의 자체 GPU 개발 선언과 반도체 공급망의 지각변동" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+    
+    <div class="content"><div style="font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; font-size: 16px; box-sizing: border-box;"><div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin-bottom: 20px; font-style: italic;">우주 산업의 선두주자 SpaceX가 이제는 인공지능 연산의 핵심인 GPU 시장에 도전장을 내밀었습니다. 이는 외부 공급망 의존도를 낮추고 수직 계열화를 완성하려는 일론 머스크 특유의 전략이 반영된 결과로 보입니다.</div><p style="margin-bottom: 15px;">반가워요! 오늘은 우주를 넘어 반도체 시장까지 흔들고 있는 SpaceX의 소식을 가져왔어요. 최근 공개된 상장 관련 문서에서 SpaceX가 자체 GPU 개발을 위한 대규모 자본 지출을 계획하고 있다는 사실이 드러났거든요. 제가 보기엔 이건 단순한 칩 개발 이상의 큰 의미가 있는 것 같네요.</p><h2 style="font-size: 22px; color: #0066cc; border-bottom: 2px solid #eaeaea; padding-bottom: 10px; margin-top: 30px; margin-bottom: 20px;">공급망 리스크를 기회로 바꾸는 정공법</h2><p style="margin-bottom: 15px;">일론 머스크는 이미 테슬라에서 도조(Dojo) 칩을 통해 자체 반도체 설계 역량을 증명한 바 있죠. SpaceX 역시 스타링크 서비스 고도화와 우주선 제어를 위해 엄청난 양의 연산 자원이 필요한 상황이에요. 외부 칩 공급에만 의존해서는 비용과 속도 경쟁에서 밀릴 수 있다는 판단을 내린 것이죠. 제 생각엔 이런 과감한 선택이 SpaceX를 단순한 우주 기업을 넘어 종합 테크 기업으로 진화하게 만들 것 같아요.</p><p style="margin-bottom: 15px;">비즈니스 리더들은 여기서 수직 계열화의 중요성을 배워야 해요. 핵심 부품의 국산화 혹은 자체 개발은 초기 비용은 많이 들지만 장기적으로는 독보적인 경제적 해자를 만들어주기 때문이죠. SpaceX가 직접 만든 GPU로 돌리는 인공지능은 또 어떤 놀라운 결과를 보여줄지 정말 기대되지 않나요?</p><h2 style="font-size: 22px; color: #0066cc; border-bottom: 2px solid #eaeaea; padding-bottom: 10px; margin-top: 30px; margin-bottom: 20px;">반도체 시장에 미칠 파장</h2><table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;"><thead><tr style="background-color: #0066cc; color: white;"><th style="padding: 12px; border: 1px solid #ddd;">구분</th><th style="padding: 12px; border: 1px solid #ddd;">예상 효과</th></tr></thead><tbody><tr style="background-color: #f9f9f9;"><td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">비용 절감</td><td style="padding: 12px; border: 1px solid #ddd;">외부 구매 비용 대비 대폭 축소</td></tr><tr><td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">최적화</td><td style="padding: 12px; border: 1px solid #ddd;">우주 데이터 처리에 최적화된 설계</td></tr><tr style="background-color: #f9f9f9;"><td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">기술 자립</td><td style="padding: 12px; border: 1px solid #ddd;">엔비디아 의존도 탈피</td></tr></tbody></table><p style="margin-bottom: 15px;">기술적으로는 우주의 가혹한 환경을 견디면서도 고성능 연산을 수행해야 하는 만큼 일반적인 GPU와는 다른 설계 철학이 들어갈 것으로 보여요. <span style="background-color: #fffde7; padding: 2px 4px;">이런 특수 목적 칩의 발전은 범용 AI 시장에도 새로운 영감을 줄 수 있어요.</span> 저도 엔지니어로서 그 설계 방식이 무척이나 궁금해지네요.</p><div style="background-color: #f5f5f5; padding: 15px; border-left: 5px solid #0066cc; margin-bottom: 20px;"><h3 style="margin-top: 0; color: #0066cc;">전문가 분석</h3><p style="margin-bottom: 0;">SpaceX의 행보는 빅테크 기업들이 자체 실리콘을 가지려는 거대한 흐름과 맞닿아 있어요. 이제 소프트웨어만 잘해서는 안 되고 하드웨어의 근간까지 장악해야 승기를 잡을 수 있다는 점을 명심해야 해요.</p></div><p style="margin-bottom: 15px;">오늘의 SpaceX 소식 어떠셨나요? 저는 혁신이란 결국 남들이 불가능하다고 생각하는 영역에 도전하는 것에서 시작된다는 걸 다시 한번 느꼈어요. 여러분도 여러분만의 GPU 같은 핵심 역량을 키워나가시길 응원할게요! 다음에 또 만나요!</p><script type="application/ld+json">{"@context": "<a href="https://schema.org","@type":" target="_blank">https://schema.org","@type":</a> "BlogPosting","headline": "SpaceX의 자체 GPU 개발 선언과 반도체 공급망의 지각변동","description": "SpaceX가 칩 수급 안정화를 위해 자체 GPU 개발에 나선다는 소식이 업계에 큰 파장을 일으키고 있습니다.","author": {"@type": "Person","name": "클로이"},"datePublished": "2026-04-25"}</script></div></div>
+
+    <!-- Bottom Ad (Reduced by 50% - Top Ad Removed) -->
+    <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5003342395815276"
+             data-ad-slot="auto"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <div class="comment-section">
+        <script src="https://utteranc.es/client.js" repo="kimsungwuk/chloekim" issue-term="pathname" theme="github-light" async></script>
+    </div>
+    
+    <div style="margin-top: 60px; padding-top: 20px; border-top: 1px solid #e5e5e5; text-align: center; font-size: 14px;">
+        <a href="../about.html" style="margin: 0 10px; color: var(--text-secondary);">소개</a> | 
+        <a href="../contact.html" style="margin: 0 10px; color: var(--text-secondary);">문의하기</a> | 
+        <a href="../privacy.html" style="margin: 0 10px; color: var(--text-secondary);">개인정보처리방침</a>
+    </div>
+
+    <a href="../index.html" class="back-link">← 모든 포스팅 보기</a>
+</div>
+<script>
+    function copyToClipboard(id) {
+        const text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.querySelector(`button[onclick="copyToClipboard('${id}')"]`);
+            const originalIcon = btn.innerHTML;
+            btn.innerHTML = '✓';
+            setTimeout(() => { btn.innerHTML = originalIcon; }, 2000);
+        });
+    }
+</script>
+</body>
+</html>
